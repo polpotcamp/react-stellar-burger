@@ -1,0 +1,10 @@
+.burgerIngredients{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+.categories{
+    max-height: 762px;
+    overflow: scroll;
+    overflow-x: hidden
+}

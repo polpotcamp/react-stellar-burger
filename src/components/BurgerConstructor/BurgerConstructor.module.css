@@ -1,0 +1,15 @@
+.BurgerConstructor{
+    display: flex;
+    flex-direction: column;
+}
+.buy{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.elements{
+    height: 652px;
+    overflow: scroll;
+    overflow-x: hidden;
+}

@@ -1,0 +1,22 @@
+.header{
+    background-color: #1C1C21;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    display: flex;
+    width: 1280px;
+    align-items: center;
+}
+.menu{
+    display: flex;
+    margin-right: 112px;
+}
+.item{
+    display: flex;
+    align-items: center;
+}
+.personalAccount{
+    display: flex;
+    margin-left: 289px;
+}
