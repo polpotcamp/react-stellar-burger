@@ -2,13 +2,12 @@ import Mainstyles from './BurgerIngredients.module.css'
 import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientList from '../IngredientList/IngredientList';
-import PropTypes from 'prop-types';
-function BurgerIngredients(data) {
+function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState('one')
     return (
         <section className={`${Mainstyles.burgerIngredients} mr-10`}>
             <p className={`text text_type_main-large mt-10`}>Соберите Бургер</p>
-            <div style={{ display: 'flex' }} className={`mt-5`}>
+            <div  className={`mt-5 ${Mainstyles.tabs}`}>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent}>
                     Булки
                 </Tab>
@@ -20,14 +19,11 @@ function BurgerIngredients(data) {
                 </Tab>
             </div>
             <div className={`${Mainstyles.categories} custom-scroll`}>
-                <IngredientList Ingredients={data} type='bun' name='Булки'/>
-                <IngredientList Ingredients={data} type='sauce' name='Соусы'/>
-                <IngredientList Ingredients={data} type='main' name='Начинки'/>
+                <IngredientList ingredients={props} type='bun' name='Булки' />
+                <IngredientList ingredients={props} type='sauce' name='Соусы' />
+                <IngredientList ingredients={props} type='main' name='Начинки' />
             </div>
-        </section>     
+        </section>
     )
 }
-BurgerIngredients.propTypes ={
-    data: PropTypes.array.isRequired  
-   }
 export default BurgerIngredients

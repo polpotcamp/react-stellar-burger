@@ -15,7 +15,7 @@ function App() {
         if (res.ok) {
           return res.json()
         }
-        throw res
+        return Promise.reject(`Ошибка ${res.status}`);
       })
       .then(data => {
         setData(data)
@@ -33,15 +33,10 @@ function App() {
   return (
     <div className={styles.app} id="main">
       <AppHeader />
-      <div className={styles.twoColumn}>
+      <main className={styles.twoColumn}>
         <BurgerIngredients data={data.data} />
         <BurgerConstructor data={data.data} />
-      </div>
-      <pre style={{
-        margin: "auto",
-        fontSize: "1.5rem"
-      }}>
-      </pre>
+      </main>
     </div>
   );
 }

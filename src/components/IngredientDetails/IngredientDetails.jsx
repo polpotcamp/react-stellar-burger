@@ -1,14 +1,14 @@
 import styles from './IngredientDetails.module.css'
-import PropTypes from 'prop-types';
-function IngredientDetails({ Ingredient }) {
+import { ingredientPropType } from '../../utils/prop-types';
+function IngredientDetails({ ingredient }) {
     return (
         <div className={styles.ingredientDetails}>
             <p className="text text_type_main-large mt-10 mr-10 ml-10">
                 Детали ингредиента
             </p>
-            <img src={Ingredient.image} alt={Ingredient.name} className={`${styles.img} mr-25 ml-25 pl-5 pr-5`}/>
+            <img src={ingredient.image} alt={ingredient.name} className={`${styles.img} mr-25 ml-25 pl-5 pr-5`} />
             <p className="text text_type_main-medium mt-4 mb-8 ml-25 mr-25">
-                {Ingredient.name}
+                {ingredient.name}
             </p>
             <div className={`${styles.flexbox} mb-15 mr-25 ml-25`}>
                 <div className={styles.property}>
@@ -16,7 +16,7 @@ function IngredientDetails({ Ingredient }) {
                         Калории,ккал
                     </p>
                     <p className="text  text_type_digits-default text_color_inactive">
-                        {Ingredient.calories}
+                        {ingredient.calories}
                     </p>
                 </div>
                 <div className={styles.property}>
@@ -24,7 +24,7 @@ function IngredientDetails({ Ingredient }) {
                         Белки, г
                     </p>
                     <p className="text  text_type_digits-default text_color_inactive">
-                        {Ingredient.proteins}
+                        {ingredient.proteins}
                     </p>
                 </div>
                 <div className={styles.property}>
@@ -32,7 +32,7 @@ function IngredientDetails({ Ingredient }) {
                         Жиры, г
                     </p>
                     <p className="text  text_type_digits-default text_color_inactive">
-                        {Ingredient.fat}
+                        {ingredient.fat}
                     </p>
                 </div>
                 <div className={styles.property}>
@@ -40,21 +40,14 @@ function IngredientDetails({ Ingredient }) {
                         Углеводы, г
                     </p>
                     <p className="text  text_type_digits-default text_color_inactive">
-                        {Ingredient.carbohydrates}
+                        {ingredient.carbohydrates}
                     </p>
                 </div>
             </div>
         </div>
     )
 }
-IngredientDetails.propTypes ={
-    Ingredient:PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        calories:PropTypes.number.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat:PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-      }),
-   }
+IngredientDetails.propTypes = {
+    ingredient: ingredientPropType
+}
 export default IngredientDetails
