@@ -20,9 +20,9 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <div className={`${Mainstyles.categories} custom-scroll`}>
-                <IngredientList ingredients={props} type='bun' name='Булки' />
-                <IngredientList ingredients={props} type='sauce' name='Соусы' />
-                <IngredientList ingredients={props} type='main' name='Начинки' />
+                <IngredientList ingredients={props.data} type='bun' name='Булки' />
+                <IngredientList ingredients={props.data} type='sauce' name='Соусы' />
+                <IngredientList ingredients={props.data} type='main' name='Начинки' />
             </div>
         </section>
     )

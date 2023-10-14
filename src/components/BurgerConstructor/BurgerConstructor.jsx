@@ -26,21 +26,19 @@ function BurgerConstructor({ data }) {
                 price={data[0].price}
                 thumbnail={data[0].image}
                 extraClass={'ml-8'}
+                key={data[0]._id}
             />
             <div className={`${BurgerConstructorStyles.elements} custom-scroll`}>
-                {notBun.map((ingredient) =>(     
-                        <>
-                        <div className={`${BurgerConstructorStyles.elementsnobun}`} >
-                        <DragIcon type='primary'/>
-                    <ConstructorElement
-                        text={`${ingredient.name}`}
-                        price={ingredient.price}
-                        thumbnail={ingredient.image}
-                        key={ingredient._id}
-                    />
-                    </div>
-                    </>
-               ))}
+                {notBun.map((ingredient) => (   
+                        <div className={`${BurgerConstructorStyles.elementsnobun}`} key={ingredient._id} >
+                            <DragIcon type='primary'/>
+                            <ConstructorElement
+                                text={`${ingredient.name}`}
+                                price={ingredient.price}
+                                thumbnail={ingredient.image}
+                            />
+                        </div>
+                ))}
             </div>
             <ConstructorElement
                 type='bottom'

@@ -25,8 +25,8 @@ function Modal({ setActive, children }) {
     }, [])
     return domReady
         ? ReactDOM.createPortal((
-            <div className={`${ModalStyles.modal} ${ModalStyles.active}` } onClick={() => closeModal()}>
-                 <ModalOverlay />
+            <div className={`${ModalStyles.modal} ${ModalStyles.active}` }>
+                 <ModalOverlay  onClick={closeModal}/>
                 <div className={ModalStyles.content} onClick={e => e.stopPropagation()}>
                     <div className={ModalStyles.close}>
                         <CloseIcon onClick={() => closeModal()} />
