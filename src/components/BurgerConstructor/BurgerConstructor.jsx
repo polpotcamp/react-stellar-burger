@@ -4,6 +4,7 @@ import Modal from '../Modal/Modal'
 import React from "react";
 import OrderDetails from '../OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
+import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 function BurgerConstructor({ data }) {
     const [modalActive, setModalActive] = React.useState(false)
     function isTrueType() {
@@ -19,31 +20,37 @@ function BurgerConstructor({ data }) {
     return (
         <div className={`${BurgerConstructorStyles.BurgerConstructor} mt-25`}>
             <ConstructorElement
-                    type='top'
-                    isLocked={true}
-                    text={`${ data[0].name} (верх)`}
-                    price={data[0].price}
-                    thumbnail={data[0].image}
-                />
-                <div  className={`${BurgerConstructorStyles.elements} custom-scroll`}>
-                {notBun.map((ingredient)=>(
+                type='top'
+                isLocked={true}
+                text={`${data[0].name} (верх)`}
+                price={data[0].price}
+                thumbnail={data[0].image}
+                extraClass={'ml-8'}
+            />
+            <div className={`${BurgerConstructorStyles.elements} custom-scroll`}>
+                {notBun.map((ingredient) =>(     
+                        <>
+                        <div className={`${BurgerConstructorStyles.elementsnobun}`} >
+                        <DragIcon type='primary'/>
                     <ConstructorElement
-                    dragIcon={true}
-                    text={`${ingredient.name}`}
-                    price={ingredient.price}
-                    thumbnail={ingredient.image}
-                    key={ingredient._id}
-                />
-                ))}
-                </div>
-                <ConstructorElement
-                    type='bottom'
-                    isLocked={true}
-                    text={`${ data[0].name} (низ)`}
-                    price={data[0].price}
-                    thumbnail={data[0].image}
-                />
-           
+                        text={`${ingredient.name}`}
+                        price={ingredient.price}
+                        thumbnail={ingredient.image}
+                        key={ingredient._id}
+                    />
+                    </div>
+                    </>
+               ))}
+            </div>
+            <ConstructorElement
+                type='bottom'
+                isLocked={true}
+                text={`${data[0].name} (низ)`}
+                price={data[0].price}
+                thumbnail={data[0].image}
+                extraClass={'ml-8'}
+            />
+
             <div className={`${BurgerConstructorStyles.buy} mt-10`} >
                 <div className={`mr-10 ${BurgerConstructorStyles.price}`} >
                     <p className="text text_type_digits-medium mr-2"  >610</p>
@@ -55,10 +62,10 @@ function BurgerConstructor({ data }) {
             </div>
 
             {modalActive && (
-        <Modal setActive={setModalActive}>
-          <OrderDetails />
-        </Modal>
-      )}
+                <Modal setActive={setModalActive}>
+                    <OrderDetails />
+                </Modal>
+            )}
         </div>
     )
 }
