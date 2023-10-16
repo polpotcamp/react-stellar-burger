@@ -5,3 +5,7 @@
   background-color: #131316;
   color: #f2f2f3;
 }
+.twoColumn{
+  display: flex;
+  justify-content: center;
+}
