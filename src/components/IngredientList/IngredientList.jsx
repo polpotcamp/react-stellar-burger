@@ -1,8 +1,10 @@
 import IngredientListStyles from './IngredientList.module.css'
 import IngredientСard from '../IngredientСard/IngredientСard'
 import PropTypes from 'prop-types';
-function IngredientList({ ingredients, type, name }) {
-console.log(ingredients)
+import {useContext} from 'react';
+import { apiContext } from "../../services/Api";
+function IngredientList({ type, name }) {
+    const ingredients = useContext(apiContext).data
     function isTrueType() {
         let a = []
         for (let i = 0; i < ingredients.length; i++) {
@@ -25,7 +27,7 @@ console.log(ingredients)
     )
 }
 IngredientList.propTypes = {
-    ingredients: PropTypes.array.isRequired,
+    // ingredients: PropTypes.array.isRequired,
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
 }

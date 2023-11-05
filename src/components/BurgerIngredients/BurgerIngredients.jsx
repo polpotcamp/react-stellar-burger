@@ -3,7 +3,8 @@ import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientList from '../IngredientList/IngredientList';
 import PropTypes from 'prop-types';
-function BurgerIngredients(props) {
+
+function BurgerIngredients() {
     const [current, setCurrent] = React.useState('one')
     return (
         <section className={`${Mainstyles.burgerIngredients} mr-10`}>
@@ -20,14 +21,14 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <div className={`${Mainstyles.categories} custom-scroll`}>
-                <IngredientList ingredients={props.data} type='bun' name='Булки' />
-                <IngredientList ingredients={props.data} type='sauce' name='Соусы' />
-                <IngredientList ingredients={props.data} type='main' name='Начинки' />
+                <IngredientList  type='bun' name='Булки' />
+                <IngredientList  type='sauce' name='Соусы' />
+                <IngredientList  type='main' name='Начинки' />
             </div>
         </section>
     )
 }
-BurgerIngredients.propTypes = {
-    data: PropTypes.array.isRequired,
-}
+// BurgerIngredients.propTypes = {
+//     data: PropTypes.array.isRequired,
+// }
 export default BurgerIngredients
