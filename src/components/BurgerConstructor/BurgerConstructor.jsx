@@ -3,15 +3,15 @@ import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-de
 import Modal from '../Modal/Modal'
 import React from "react";
 import OrderDetails from '../OrderDetails/OrderDetails';
-import PropTypes from 'prop-types';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { BurgerConstructorContext } from '../../services/BurgerConstructor';
-import { orderContext } from '../../services/Order';
+import { OrderContext } from '../../services/Order';
+import {request} from '../utils/utils';
 function BurgerConstructor() {
     const [domReady, setDomReady] = React.useState(false)
     const [modalActive, setModalActive] = React.useState(false)
     const { burgerConstructorData } = React.useContext(BurgerConstructorContext)
-    const {order,setOrder} =React.useContext(orderContext)
+    const { order, setOrder } = React.useContext(OrderContext)
     const bun = burgerConstructorData.bun
     const totalPrice = calculateTotalPrice()
     const notBun = burgerConstructorData.ingr
@@ -27,7 +27,7 @@ function BurgerConstructor() {
             ids.push(burgerConstructorData.bun._id)
             ids.unshift(burgerConstructorData.bun._id)
         }
-        fetch("https://norma.nomoreparties.space/api/orders", {
+        request('https://norma.nomoreparties.space/api/orders',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
@@ -35,21 +35,14 @@ function BurgerConstructor() {
             body: JSON.stringify({
                 "ingredients": ids
             })
-
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json()
-                }
-                return Promise.reject(`Ошибка ${res.status}`);
-            })
             .then(data => {
                 setOrder(data.order.number)
             })
             .catch(error => {
                 console.log(error)
             })
-            setModalActive(true)
+        setModalActive(true)
     }
     function calculateTotalPrice() {
         let a = 0
@@ -109,13 +102,10 @@ function BurgerConstructor() {
 
                 {modalActive && (
                     <Modal setActive={setModalActive}>
-                        <OrderDetails  />
+                        <OrderDetails />
                     </Modal>
                 )}
             </div> : null
     )
-}
-BurgerConstructor.propTypes = {
-    data: PropTypes.array
 }
 export default BurgerConstructor

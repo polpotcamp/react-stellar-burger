@@ -4,8 +4,9 @@ import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import { BurgerConstructorContext } from "../../services/BurgerConstructor";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import React from "react";
-import { apiContext } from "../../services/Api";
-import { orderContext } from "../../services/Order";
+import { ApiContext } from "../../services/Api";
+import { OrderContext } from "../../services/Order";
+import {request} from "../utils/utils";
 function App() {
   const Url = `https://norma.nomoreparties.space/api/ingredients`;
   const [data, setData] = React.useState([])
@@ -22,13 +23,7 @@ function App() {
   }
   const [burgerConstructorData, dispatch] = React.useReducer(reducer, { bun: {}, ingr: [] })
   React.useEffect(() => {
-    fetch(Url)
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+    request(Url)
       .then(data => {
         setData(data)
         dispatch({ type: 'SWITCHBUN', payload: data.data[0] })
@@ -47,14 +42,14 @@ function App() {
     <div className={styles.app} id="main">
       <AppHeader />
       <main className={styles.twoColumn}>
-        <apiContext.Provider value={data}>
+        <ApiContext.Provider value={data}>
           <BurgerConstructorContext.Provider value={{ burgerConstructorData, dispatch }}>
-            <orderContext.Provider value={{order,setOrder}}>
+            <OrderContext.Provider value={{order,setOrder}}>
             <BurgerIngredients />
             <BurgerConstructor />
-            </orderContext.Provider>
+            </OrderContext.Provider>
           </BurgerConstructorContext.Provider>
-        </apiContext.Provider>
+        </ApiContext.Provider>
       </main>
     </div>
   );

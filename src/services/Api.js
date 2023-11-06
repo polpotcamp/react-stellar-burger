@@ -1,2 +1,2 @@
 import React from "react";
-export const apiContext = React.createContext([]);
+export const ApiContext = React.createContext([]);

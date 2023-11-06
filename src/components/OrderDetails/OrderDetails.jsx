@@ -1,9 +1,9 @@
 import styles from './OrderDetails.module.css'
 import CheckMarkIcon from '../../images/graphics.svg'
 import React from 'react'
-import { orderContext } from '../../services/Order'
+import { OrderContext } from '../../services/Order'
 function OrderDetails() {
-    const {order} =React.useContext(orderContext)
+    const {order} =React.useContext(OrderContext)
     return (
         <div className={styles.OrderDetails}>
             <p className="text text_type_digits-large mt-30">{order}</p>

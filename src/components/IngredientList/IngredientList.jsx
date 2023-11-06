@@ -2,9 +2,9 @@ import IngredientListStyles from './IngredientList.module.css'
 import IngredientСard from '../IngredientСard/IngredientСard'
 import PropTypes from 'prop-types';
 import {useContext} from 'react';
-import { apiContext } from "../../services/Api";
+import { ApiContext } from "../../services/Api";
 function IngredientList({ type, name }) {
-    const ingredients = useContext(apiContext).data
+    const ingredients = useContext(ApiContext).data
     function isTrueType() {
         let a = []
         for (let i = 0; i < ingredients.length; i++) {
