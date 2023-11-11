@@ -6,7 +6,7 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrder } from '../../services/async/Order';
 import { useDrop } from 'react-dnd';
-import { switchBunAction, addIngredientAction } from '../../services/reduces/MainReducer';
+import { switchBunAction, addIngredientAction } from '../../services/actions/actions';
 import ConstructorElementList from '../ConstructorElementList/ConstructorElementList';
 function BurgerConstructor() {
     const dispatch = useDispatch()

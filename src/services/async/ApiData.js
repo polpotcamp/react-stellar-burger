@@ -1,8 +1,9 @@
-import { request } from "../../components/utils/utils";
-import { getApiDataAction } from "../reduces/MainReducer";
+import { request } from "../../components/utils/Api";
+import { getApiDataAction } from "../actions/actions";
+import { BASE_URL } from "../../components/utils/Api";
 export const getApiData = () => {
     return function (dispatch) {
-        request(`https://norma.nomoreparties.space/api/ingredients`)
+        request(`${BASE_URL}/ingredients`)
             .then(data => {
                 dispatch(getApiDataAction(data))
             })

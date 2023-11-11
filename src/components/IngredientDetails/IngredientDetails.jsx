@@ -2,7 +2,6 @@ import styles from './IngredientDetails.module.css'
 import { useSelector } from 'react-redux';
 function IngredientDetails() {
     const ingredient = useSelector(state => state.inigredientDetails)
-    console.log(ingredient)
     return (
         <div className={styles.ingredientDetails}>
             <p className="text text_type_main-large mt-10 mr-10 ml-10">

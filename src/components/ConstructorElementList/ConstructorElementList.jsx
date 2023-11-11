@@ -3,8 +3,9 @@ import React from 'react';
 import { DragIcon, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorStyles from '../BurgerConstructor/BurgerConstructor.module.css'
 import { useDispatch} from 'react-redux';
-import { removeIngredientAction } from '../../services/reduces/MainReducer';
-import { sortedIngredientsAction } from '../../services/reduces/MainReducer';
+import { removeIngredientAction ,sortedIngredientsAction } from '../../services/actions/actions';
+import { ingredientType } from '../../utils/types';
+import PropTypes from 'prop-types';
 function ConstructorElementList({ingredientInConstructor,  index }) {
     const dispatch = useDispatch()
     const ref = React.useRef(null)
@@ -52,5 +53,9 @@ function ConstructorElementList({ingredientInConstructor,  index }) {
             />
         </div>
     )
+}
+ConstructorElementList.propTypes = {
+    ingredientInConstructor: ingredientType,
+    index: PropTypes.number.isRequired
 }
 export default ConstructorElementList

@@ -3,8 +3,8 @@ import CardStyles from './IngredientСard.module.css'
 import Modal from '../Modal/Modal';
 import React from 'react';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
-import { ingredientPropType } from "../../utils/prop-types";
-import { switchIngredientDetailsAction} from '../../services/reduces/MainReducer';
+import { ingredientType} from "../../utils/types";
+import { switchIngredientDetailsAction} from '../../services/actions/actions';
 import { useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
@@ -52,6 +52,6 @@ function IngredientСard({ ingredient }) {
     )
 }
 IngredientСard.propTypes = {
-    ingredient: ingredientPropType
+    ingredient: ingredientType
 }
 export default IngredientСard

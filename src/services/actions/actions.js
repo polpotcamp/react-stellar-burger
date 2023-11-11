@@ -5,3 +5,10 @@ export const ADD_INGREDIENT = 'ADD_INGREDIENT'
 export const SWITCH_INGREDIENT_DETAILS = 'SWITCH_INGREDIENT_DETAILS'
 export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT'
 export const SORTED_INGREDIENTS = 'SORTED_INGREDIENTS'
+export const getApiDataAction = (payload) => ({ type: GET_APIDATA, payload })
+export const createOrderAction = (payload) => ({ type: CREATE_ODER, payload })
+export const switchBunAction = (payload) => ({ type: SWITCH_BUN, payload })
+export const addIngredientAction = (payload) => ({ type: ADD_INGREDIENT, payload })
+export const switchIngredientDetailsAction = (payload) => ({ type: SWITCH_INGREDIENT_DETAILS, payload })
+export const removeIngredientAction = (payload) => ({ type: REMOVE_INGREDIENT, payload })
+export const sortedIngredientsAction = (payload) => ({ type: SORTED_INGREDIENTS, payload })

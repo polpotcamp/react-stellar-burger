@@ -1,12 +1,5 @@
 import { GET_APIDATA, CREATE_ODER, SWITCH_BUN, ADD_INGREDIENT, SWITCH_INGREDIENT_DETAILS, REMOVE_INGREDIENT, SORTED_INGREDIENTS } from "../actions/actions";
 
-export const getApiDataAction = (payload) => ({ type: GET_APIDATA, payload })
-export const createOrderAction = (payload) => ({ type: CREATE_ODER, payload })
-export const switchBunAction = (payload) => ({ type: SWITCH_BUN, payload })
-export const addIngredientAction = (payload) => ({ type: ADD_INGREDIENT, payload })
-export const switchIngredientDetailsAction = (payload) => ({ type: SWITCH_INGREDIENT_DETAILS, payload })
-export const removeIngredientAction = (payload) => ({ type: REMOVE_INGREDIENT, payload })
-export const sortedIngredientsAction = (payload) => ({ type: SORTED_INGREDIENTS, payload })
 const initialState = {
     apiData: [],
     order: '',

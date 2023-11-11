@@ -7,3 +7,4 @@
 export  function request(url,options){
     return fetch(url, options).then(checkResponse)
 }
+export const BASE_URL ='https://norma.nomoreparties.space/api'
