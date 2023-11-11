@@ -1,6 +1,6 @@
-import { request } from "../../components/utils/Api";
+import { request } from "../../utils/Api";
 import { createOrderAction } from "../actions/actions";
-import { BASE_URL } from "../../components/utils/Api";
+import { BASE_URL } from "../../utils/Api";
 export const fetchOrder = (ids) => {
     return function (dispatch) {
         request(` ${BASE_URL}/orders`,{
