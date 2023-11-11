@@ -1,9 +1,9 @@
 import styles from './OrderDetails.module.css'
 import CheckMarkIcon from '../../images/graphics.svg'
 import React from 'react'
-import { OrderContext } from '../../services/Order'
+import { useSelector } from 'react-redux';
 function OrderDetails() {
-    const {order} =React.useContext(OrderContext)
+    const order = useSelector(state => state.order)
     return (
         <div className={styles.OrderDetails}>
             <p className="text text_type_digits-large mt-30">{order}</p>

@@ -23,3 +23,23 @@
     display: flex;
     align-items: center;
 }
+.ChoiseBunTop{
+    width: 536px;
+    height: 80px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1C1C21;
+}
+.ChoiseBunBot{
+    width: 536px;
+    height: 80px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1C1C21;
+}
