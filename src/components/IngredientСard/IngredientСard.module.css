@@ -13,3 +13,7 @@
 .img{
     width: 240px;
 }
+.link{
+ text-decoration: none !important;
+ color: white
+}

@@ -7,7 +7,7 @@ import ModalOverlay from '../ModalOverlay/ModalOverlay';
 function Modal({ setActive, children }) {
     const container = document.querySelector('#main')
     const [domReady, setDomReady] = React.useState(false)
-    function closeModal(){
+    function closeModal() {
         setActive(false)
     }
     const closeByEsc = evt => {
@@ -20,13 +20,12 @@ function Modal({ setActive, children }) {
         window.addEventListener('keydown', closeByEsc)
         return () => {
             window.removeEventListener('keydown', closeByEsc)
-
         }
     }, [])
     return domReady
         ? ReactDOM.createPortal((
-            <div className={`${ModalStyles.modal} ${ModalStyles.active}` }>
-                 <ModalOverlay  onClick={closeModal}/>
+            <div className={`${ModalStyles.modal} ${ModalStyles.active}`}>
+                <ModalOverlay onClick={closeModal} />
                 <div className={ModalStyles.content} onClick={e => e.stopPropagation()}>
                     <div className={ModalStyles.close}>
                         <CloseIcon onClick={() => closeModal()} />

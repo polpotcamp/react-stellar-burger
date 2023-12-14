@@ -1,4 +1,7 @@
-import { GET_APIDATA, CREATE_ODER, SWITCH_BUN, ADD_INGREDIENT, SWITCH_INGREDIENT_DETAILS, REMOVE_INGREDIENT, SORTED_INGREDIENTS } from "../actions/actions";
+import {
+    GET_APIDATA, CREATE_ODER, SWITCH_BUN, ADD_INGREDIENT, SWITCH_INGREDIENT_DETAILS, REMOVE_INGREDIENT, SORTED_INGREDIENTS, REGISTER_USER,
+    SIGN_IN_USER, LOG_OUT, AUTHORIZATION_USER
+} from "../actions/actions";
 
 const initialState = {
     apiData: [],
@@ -6,9 +9,23 @@ const initialState = {
     bun: [],
     ingr: [],
     inigredientDetails: [],
-};
+    isAuthorization: false,
+}
 export const MainReducer = (state = initialState, action) => {
     switch (action.type) {
+        case REGISTER_USER:
+            localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
+            localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
+            return { ...state,  isAuthorization: true}
+        case SIGN_IN_USER:
+            localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
+            localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
+            return { ...state,  isAuthorization: true}
+        case AUTHORIZATION_USER:
+            return { ...state,  isAuthorization: true}
+        case LOG_OUT:
+            localStorage.setItem("accessToken", JSON.stringify(''))
+            return { ...state, isAuthorization: false }
         case GET_APIDATA:
             return { ...state, apiData: action.payload.data }
         case CREATE_ODER:
@@ -26,11 +43,10 @@ export const MainReducer = (state = initialState, action) => {
             const newArr = [...state.ingr]
             newArr.splice(action.payload.dragIndex, 1)
             newArr.splice(action.payload.hoverIndex, 0, dragCard)
-            console.log( action.payload.hoverIndex)
             return { ...state, ingr: newArr }
         default: {
             return state
         }
     }
 }
-// state.ingr.filter(ingredient =>  ingredient._id !== action.payload)
+

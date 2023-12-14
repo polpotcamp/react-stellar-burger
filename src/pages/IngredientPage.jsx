@@ -1,10 +1,23 @@
-import styles from './IngredientDetails.module.css'
-import React from 'react';
-import { useSelector} from 'react-redux';
-function IngredientDetails() {
-    const ingredient = useSelector(state => state.inigredientDetails)
+import styles from '../components/IngredientDetails/IngredientDetails.module.css'
+import React from 'react'
+import { getApiData } from '../services/async/ApiData';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+function IngredientPage() {
+    const dispatch = useDispatch()
+    const [domReady, setDomReady] = React.useState(false)
+    const id = useParams().ingredientId.slice(1)
+    const ingredients = useSelector(state => state.apiData)
+    const ingredient = ingredients.find(x => x._id === id)
+    React.useEffect(() => {
+        dispatch(getApiData())
+        setTimeout(() => {
+            setDomReady(true)
+        }, 200)
+    }, [])
     return (
-        <>
+        domReady ?
+        <div className={styles.container}>
             <div className={styles.ingredientDetails}>
                 <p className="text text_type_main-large mt-10 mr-10 ml-10">
                     Детали ингредиента
@@ -48,7 +61,6 @@ function IngredientDetails() {
                     </div>
                 </div>
             </div> 
-            </>
-    )
+            </div>: null)
 }
-export default IngredientDetails
+export default IngredientPage

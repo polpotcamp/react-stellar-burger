@@ -1,20 +1,21 @@
 import { request } from "../../utils/Api";
-import { createOrderAction } from "../actions/actions";
+import { logOutAction } from "../actions/actions";
 import { BASE_URL } from "../../utils/Api";
-export const fetchOrder = (ids) => {
+export const LogOut = () => {
+    const token = JSON.parse(localStorage.getItem("refreshToken"));
     return function (dispatch) {
-        request(`${BASE_URL}/orders`,{
+        request(`${BASE_URL}/auth/logout`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
-                Authorization: JSON.parse(localStorage.getItem("accessToken"))
             },
             body: JSON.stringify({
-                "ingredients": ids
+                "token": token
             })
         })
-            .then(data => {
-                dispatch(createOrderAction(data))
+            .then(() => {
+                console.log(token)
+                dispatch(logOutAction())
             })
             .catch(error => {
                 console.log(error)

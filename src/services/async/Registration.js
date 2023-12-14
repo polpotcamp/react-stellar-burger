@@ -1,20 +1,22 @@
 import { request } from "../../utils/Api";
-import { createOrderAction } from "../actions/actions";
+import { registerUserAction } from "../actions/actions";
 import { BASE_URL } from "../../utils/Api";
-export const fetchOrder = (ids) => {
+export const Registration = (email, password, name) => {
     return function (dispatch) {
-        request(`${BASE_URL}/orders`,{
+        request(`${BASE_URL}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
-                Authorization: JSON.parse(localStorage.getItem("accessToken"))
             },
             body: JSON.stringify({
-                "ingredients": ids
+                "email": email,
+                "password": password,
+                "name": name
             })
         })
             .then(data => {
-                dispatch(createOrderAction(data))
+                console.log(data)
+                dispatch(registerUserAction(data))
             })
             .catch(error => {
                 console.log(error)

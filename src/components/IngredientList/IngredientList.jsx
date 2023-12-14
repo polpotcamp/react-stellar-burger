@@ -9,7 +9,6 @@ function IngredientList({ type}) {
     const [domReady, setDomReady] = React.useState(false)
     const apiData= useSelector(state => state.apiData)
     let ingedientList= isTrueType()
-    
     function isTrueType() {
         let a = []
         for (let i = 0; i < apiData.length; i++) {
