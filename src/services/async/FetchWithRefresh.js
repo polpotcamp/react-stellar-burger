@@ -1,7 +1,5 @@
 import { refreshToken } from "./RefreshToken";
-const checkReponse = (res) => {
-    return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
-  }
+import { checkReponse } from "../../utils/Api";
   export const fetchWithRefresh = async (url, options) => {
     try {
       const res = await fetch(url, options);

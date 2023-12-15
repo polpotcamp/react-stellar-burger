@@ -1,7 +1,7 @@
 import { request } from "../../utils/Api";
 import { logOutAction } from "../actions/actions";
 import { BASE_URL } from "../../utils/Api";
-export const LogOut = () => {
+export const logOut = () => {
     const token = JSON.parse(localStorage.getItem("refreshToken"));
     return function (dispatch) {
         request(`${BASE_URL}/auth/logout`,{

@@ -24,7 +24,7 @@ export const MainReducer = (state = initialState, action) => {
         case AUTHORIZATION_USER:
             return { ...state,  isAuthorization: true}
         case LOG_OUT:
-            localStorage.setItem("accessToken", JSON.stringify(''))
+            localStorage.clear()
             return { ...state, isAuthorization: false }
         case GET_APIDATA:
             return { ...state, apiData: action.payload.data }

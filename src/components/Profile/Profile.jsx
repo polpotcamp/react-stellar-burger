@@ -1,9 +1,9 @@
-import AppHeader from '../AppHeader/AppHeader';
+
 import React from 'react';
-import { EditIcon,Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { LogOut } from '../../services/async/LogOut';
+import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../services/async/LogOut';
 import { fetchWithRefresh } from '../../services/async/FetchWithRefresh';
 import { BASE_URL } from '../../utils/Api';
 import { useRef } from 'react';
@@ -12,46 +12,46 @@ function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const [userName,setUserName] = React.useState('')
-    const [userEmail,setUserEmail] = React.useState('')
-    const nameRef = useRef(userName)
-    const emailRef = useRef(userEmail)
+    const [name, setName] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('******')
+    const nameRef = useRef(name)
+    const emailRef = useRef(email)
     const logout = () => {
-        dispatch(LogOut())
+        dispatch(logOut())
         navigate('/', { state: initialBreadcrumb });
     }
-    const changeProf = () =>{
-       const name = nameRef.current.value
-       const email = emailRef.current.value
-       fetchWithRefresh(`${BASE_URL}/auth/user`,{
-        method: 'PATCH',
-        headers: {
-            authorization: JSON.parse(localStorage.getItem("accessToken")),
-            'Content-Type': 'application/json'
-        }, body: JSON.stringify({
-            name: name,
-            email: email
-        }).then((data) => {
-            setUserEmail(data.user.email)
-            setUserName(data.user.name)
-        })
-    })
-    }
-      React.useEffect(() => {
-         fetchWithRefresh(`${BASE_URL}/auth/user`,{
-                method: 'GET',
-                headers: {
-                    authorization: JSON.parse(localStorage.getItem("accessToken"))
-                }
-            }).then((data) => {
-                setUserEmail(data.user.email)
-                setUserName(data.user.name)
+    const changeProf = event => {
+        event.preventDefault()
+        fetchWithRefresh(`${BASE_URL}/auth/user`, {
+            method: 'PATCH',
+            headers: {
+                authorization: JSON.parse(localStorage.getItem("accessToken")),
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({
+                name: name,
+                email: email
             })
-        }
-    , [])
+                .then((data) => {
+                    setEmail(data.user.email)
+                    setName(data.user.name)
+                })
+        })
+    }
+    React.useEffect(() => {
+        fetchWithRefresh(`${BASE_URL}/auth/user`, {
+            method: 'GET',
+            headers: {
+                authorization: JSON.parse(localStorage.getItem("accessToken"))
+            }
+        }).then((data) => {
+            setEmail(data.user.email)
+            setName(data.user.name)
+        })
+    }
+        , [])
     return (
         <>
-            <AppHeader />
             <div className={`${styles.Profile} mt-30`} >
                 <div className={`${styles.Column}`}>
                     <nav className={`${styles.Column} mr-15`}>
@@ -69,44 +69,49 @@ function Profile() {
                         В этом разделе вы можете изменить свои персональные данные
                     </p>
                 </div>
-                <div className={`${styles.Column}`}>
-                    <div className={`${styles.InputPlace} mb-6`} >
-                        <div className={`${styles.Column}`} >
-                            <p className={`text text_type_main-default text_color_inactive ${styles.InputText}`}>
-                                Имя
-                            </p>
-                            <input type="text" placeholder={userName} ref={nameRef} className={`mt-6 ${styles.Input} text text_type_main-default text_color_inactive`} />
-                        </div>
-                        <div className={`${styles.EditIcon}`}>
-                            <EditIcon type="primary" />
-                        </div>
-                    </div>
-                    <div className={`${styles.InputPlace} mb-6`} >
-                        <div className={`${styles.Column}`} >
-                            <p className={`text text_type_main-default text_color_inactive ${styles.InputText}`}>
-                                Логин
-                            </p>
-                            <input type="text" placeholder={userEmail} ref={emailRef} className={`mt-6 ${styles.Input} text text_type_main-default text_color_inactive`} />
-                        </div>
-                        <div className={`${styles.EditIcon}`}>
-                            <EditIcon type="primary" />
-                        </div>
-                    </div>
-                    <div className={`${styles.InputPlace} mb-6`} >
-                        <div className={`${styles.Column}`} >
-                            <p className={`text text_type_main-default text_color_inactive ${styles.InputText}`}>
-                                Пароль
-                            </p>
-                            <input type="password" placeholder='******' className={`mt-6 ${styles.Input} text text_type_main-default text_color_inactive`} />
-                        </div>
-                        <div className={`${styles.EditIcon}`}>
-                            <EditIcon type="primary" />
-                        </div>
-                    </div>
-                    <Button htmlType="button" type="primary" size="large" onClick={changeProf} >
+                <form className={`${styles.Column}`} onSubmit={changeProf}>
+                    <Input
+                        type={'text'}
+                        placeholder={'Имя'}
+                        onChange={e => setName(e.target.value)}
+                        value={name}
+                        name={'name'}
+                        icon={'EditIcon'}
+                        error={false}
+                        ref={nameRef}
+                        errorText={'Ошибка'}
+                        size={'default'}
+                        extraClass="mt-6"
+                    />
+                    <Input
+                        type={'email'}
+                        placeholder={'Логин'}
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}
+                        name={'email'}
+                        icon={'EditIcon'}
+                        error={false}
+                        ref={emailRef}
+                        errorText={'Ошибка'}
+                        size={'default'}
+                        extraClass="mt-6"
+                    />
+                    <Input
+                        type={'text'}
+                        placeholder={'Пароль'}
+                        onChange={e => setPassword(e.target.value)}
+                        value={password}
+                        name={'password'}
+                        icon={'EditIcon'}
+                        error={false}
+                        errorText={'Ошибка'}
+                        size={'default'}
+                        extraClass="mt-6 mb-6"
+                    />
+                    <Button htmlType="submit" type="primary" size="large" >
                         Сохранить
                     </Button>
-                </div>
+                </form>
             </div>
         </>
 

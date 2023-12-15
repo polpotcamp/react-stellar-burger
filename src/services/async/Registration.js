@@ -1,7 +1,7 @@
 import { request } from "../../utils/Api";
 import { registerUserAction } from "../actions/actions";
 import { BASE_URL } from "../../utils/Api";
-export const Registration = (email, password, name) => {
+export const registration = (email, password, name) => {
     return function (dispatch) {
         request(`${BASE_URL}/auth/register`, {
             method: 'POST',

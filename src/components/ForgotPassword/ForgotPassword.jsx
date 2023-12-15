@@ -1,20 +1,19 @@
-import AppHeader from '../AppHeader/AppHeader';
+
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ForgotPassword.module.css'
-import { changeEmailForResetAction } from '../../services/actions/actions';
 import { request } from '../../utils/Api';
 import { BASE_URL } from '../../utils/Api';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 function ForgotPassword() {
-    const dispatch = useDispatch
+    const [email, setEmail] = React.useState('')
     const navigate = useNavigate();
     const emailRef = useRef(null)
-    const ToResetPassword = () => {
+    const ToResetPassword = event => {
+        event.preventDefault()
         const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-        const email= emailRef.current.value
         request(`${BASE_URL}/password-reset`, {
             method: 'POST',
             headers: {
@@ -38,17 +37,27 @@ function ForgotPassword() {
     };
     return (
         <>
-            <AppHeader />
             <div className={`${styles.Container}`}>
                 <p className="text text_type_main-medium">
                     Восстановление пароля
                 </p>
-                <input type="email" placeholder='Укажите e-mail' ref={emailRef} className={`mt-6  mb-6 ${styles.Input} text text_type_main-default text_color_inactive`} />
-                <div onClick={ToResetPassword}>
-                    <Button htmlType="button" type="primary" size="large">
+                <form className={`${styles.form}`} onSubmit={ToResetPassword}>
+                    <Input
+                        type={'email'}
+                        placeholder={'Укажите e-mail'}
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}
+                        name={'email'}
+                        error={false}
+                        ref={emailRef}
+                        errorText={'Ошибка'}
+                        size={'default'}
+                        extraClass="mb-6 mt-6"
+                    />
+                    <Button htmlType="submit" type="primary" size="large">
                         Восстановить
                     </Button>
-                </div>
+                </form>
                 <div className={`${styles.Links} mt-20`}>
                     <p className="text text_type_main-default text_color_inactive">
                         Вспомнили пароль?

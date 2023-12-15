@@ -1,8 +1,6 @@
 
 import { BASE_URL } from "../../utils/Api";
-    const checkReponse = (res) => {
-        return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
-      };
+import { checkReponse } from "../../utils/Api";
 export const refreshToken = () => {
     return fetch(`${BASE_URL}/auth/token`, {
       method: "POST",
