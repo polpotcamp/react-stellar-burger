@@ -13,9 +13,7 @@ import Modal from "./components/Modal/Modal";
 import { getApiData } from "./services/async/ApiData";
 import { useDispatch } from "react-redux";
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { authorizationUserAction } from "./services/actions/actions";
-import { fetchWithRefresh } from "./services/async/FetchWithRefresh";
-import { BASE_URL } from "./utils/Api";
+import getUserData from "./services/async/GetUserData";
 import AppHeader from "./components/AppHeader/AppHeader";
 function App() {
   const dispatch = useDispatch()
@@ -28,14 +26,7 @@ function App() {
   };
   const refreshToken = localStorage.getItem("refreshToken")
   if (refreshToken !==null) {
-    fetchWithRefresh(`${BASE_URL}/auth/user`, {
-      method: 'GET',
-      headers: {
-        authorization: JSON.parse(localStorage.getItem("accessToken"))
-      }
-    }).then(() => {
-      dispatch(authorizationUserAction())
-    })
+    dispatch(getUserData())
   }
   return (
     <div className={styles.app} id="main">

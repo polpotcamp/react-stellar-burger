@@ -15,13 +15,13 @@ function SignInForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const ToRegister = () => {
+    const toRegister = () => {
         navigate('/register', { state: initialBreadcrumb });
     };
-    const ToforgotPassword = () => {
+    const toforgotPassword = () => {
         navigate('/forgot-password', { state: initialBreadcrumb });
     };
-    const Login = event => {
+    const login = event => {
         event.preventDefault()
         dispatch(signUp(email, password))
         navigate('/', { state: initialBreadcrumb });
@@ -41,7 +41,7 @@ function SignInForm() {
                 <p className="text text_type_main-medium">
                     Вход
                 </p>
-                <form onSubmit={Login} className={`${styles.form}`}>
+                <form onSubmit={login} className={`${styles.form}`}>
                 <Input
                     type={'email'}
                     placeholder={'E-mail'}
@@ -76,13 +76,13 @@ function SignInForm() {
                     <p className="text text_type_main-default text_color_inactive">
                         Вы - новый ползователь?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={ToRegister}>Зарегистрироваться</p>
+                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toRegister}>Зарегистрироваться</p>
                 </div>
                 <div className={`${styles.Links} mt-4`}>
                     <p className="text text_type_main-default text_color_inactive">
                         Забыли пароль?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={ToforgotPassword}>Восстановить пароль</p>
+                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toforgotPassword}>Восстановить пароль</p>
                 </div>
             </div>
         </>

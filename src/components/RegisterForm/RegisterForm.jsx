@@ -17,10 +17,10 @@ function RegisterForm() {
     const [typeIcon, setTypeIcon] = React.useState('HideIcon')
     const [inputPype, setInputType] = React.useState('password')
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const ToLogin = () => {
+    const toLogin = () => {
         navigate('/login', { state: initialBreadcrumb });
     };
-    const Registr = event => {
+    const registr = event => {
         event.preventDefault()
         dispatch(registration(email, password, name))
         navigate('/', { state: initialBreadcrumb });
@@ -40,7 +40,7 @@ function RegisterForm() {
                 <p className="text text_type_main-medium">
                     Регистрация
                 </p>
-                <form className={`${styles.form}`} onSubmit={Registr}>
+                <form className={`${styles.form}`} onSubmit={registr}>
                     <Input
                         type={'text'}
                         placeholder={'имя'}
@@ -87,7 +87,7 @@ function RegisterForm() {
                     <p className="text text_type_main-default text_color_inactive">
                         Уже зарегистрированы?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={ToLogin}>Войти</p>
+                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toLogin}>Войти</p>
                 </div>
             </div>
         </>

@@ -10,6 +10,8 @@ const initialState = {
     ingr: [],
     inigredientDetails: [],
     isAuthorization: false,
+    userName:'',
+    userEmail:''
 }
 export const MainReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,7 +24,7 @@ export const MainReducer = (state = initialState, action) => {
             localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
             return { ...state,  isAuthorization: true}
         case AUTHORIZATION_USER:
-            return { ...state,  isAuthorization: true}
+            return { ...state,  isAuthorization: true, userName: action.payload.user.name ,userEmail:action.payload.user.email }
         case LOG_OUT:
             localStorage.clear()
             return { ...state, isAuthorization: false }

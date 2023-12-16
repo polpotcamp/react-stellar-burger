@@ -3,10 +3,11 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import styles from './ResetPassword.module.css'
-import { request } from '../../utils/Api';
-import { BASE_URL } from '../../utils/Api';
+import resetPassword from '../../services/async/ResetPassword';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 function ResetPassword() {
+    const dispatch = useDispatch()
     const [password, setPassword] = React.useState('')
     const [token, setToken] = React.useState('')
     const [typeIcon, setTypeIcon] = React.useState('HideIcon')
@@ -15,30 +16,14 @@ function ResetPassword() {
     const passwordRef = useRef(null)
     const tokenRef = useRef(null)
     const flag = localStorage.getItem("flag")
-    const ToLogin = () => {
-        const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
+    const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
+    const toLogin = () => {
         navigate('/login', { state: initialBreadcrumb });
     };
-    const ChangePassword = event => {
+    const changePassword = event => {
         event.preventDefault()
-        const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-        request(`${BASE_URL}/password-reset/reset`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: JSON.stringify({
-                "password": password,
-                "token": token
-            })
-        })
-            .then(() => {
-                localStorage.setItem("flag", JSON.stringify(null))
-                navigate('/', { state: initialBreadcrumb })
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        dispatch(resetPassword(password, token))
+        navigate('/', { state: initialBreadcrumb })
     }
     const onIconClick = () => {
         if (typeIcon === 'HideIcon') {
@@ -59,7 +44,7 @@ function ResetPassword() {
                 <p className="text text_type_main-medium">
                     Восстановление пароля
                 </p>
-                <form className={`${styles.form}`} onSubmit={ChangePassword}>
+                <form className={`${styles.form}`} onSubmit={changePassword}>
                 <Input
                     type={inputPype}
                     placeholder={'Ввведите новый пароль'}
@@ -94,7 +79,7 @@ function ResetPassword() {
                     <p className="text text_type_main-default text_color_inactive">
                         Вспомнили пароль?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={ToLogin}>Войти</p>
+                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toLogin}>Войти</p>
                 </div>
             </div>
         </>

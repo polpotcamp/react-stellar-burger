@@ -1,8 +1,6 @@
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import CardStyles from './IngredientСard.module.css'
-import Modal from '../Modal/Modal';
 import React from 'react';
-import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { ingredientType} from "../../utils/types";
 import { switchIngredientDetailsAction} from '../../services/actions/actions';
 import { useDispatch } from "react-redux";
@@ -11,7 +9,6 @@ import { useSelector } from "react-redux";
 import { Link ,useLocation} from "react-router-dom";
 function IngredientСard({ ingredient }) {
     const location = useLocation();
-    const [modalActive, setModalActive] = React.useState(false);
     const dispatch = useDispatch()
     const [count,setcount] = React.useState(0)
     const ingr = useSelector(state => state.ingr)
@@ -46,11 +43,6 @@ function IngredientСard({ ingredient }) {
                 </div>
                 <p className="text text_type_main-default">{ingredient.name}</p>
             </div>
-            {modalActive &&
-                <Modal setActive={setModalActive} >
-                    <IngredientDetails />
-                </Modal>
-            }
             </Link>
         </>
     )

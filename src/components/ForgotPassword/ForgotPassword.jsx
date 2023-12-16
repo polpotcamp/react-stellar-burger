@@ -11,9 +11,9 @@ function ForgotPassword() {
     const [email, setEmail] = React.useState('')
     const navigate = useNavigate();
     const emailRef = useRef(null)
-    const ToResetPassword = event => {
+    const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
+    const toResetPassword = event => {
         event.preventDefault()
-        const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
         request(`${BASE_URL}/password-reset`, {
             method: 'POST',
             headers: {
@@ -31,8 +31,7 @@ function ForgotPassword() {
                 console.log(error)
             })
     };
-    const ToLogin = () => {
-        const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
+    const toLogin = () => {
         navigate('/login', { state: initialBreadcrumb });
     };
     return (
@@ -41,7 +40,7 @@ function ForgotPassword() {
                 <p className="text text_type_main-medium">
                     Восстановление пароля
                 </p>
-                <form className={`${styles.form}`} onSubmit={ToResetPassword}>
+                <form className={`${styles.form}`} onSubmit={toResetPassword}>
                     <Input
                         type={'email'}
                         placeholder={'Укажите e-mail'}
@@ -62,7 +61,7 @@ function ForgotPassword() {
                     <p className="text text_type_main-default text_color_inactive">
                         Вспомнили пароль?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={ToLogin}>Войти</p>
+                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toLogin}>Войти</p>
                 </div>
             </div>
         </>

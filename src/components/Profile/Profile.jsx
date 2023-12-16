@@ -2,18 +2,21 @@
 import React from 'react';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 import { logOut } from '../../services/async/LogOut';
-import { fetchWithRefresh } from '../../services/async/FetchWithRefresh';
-import { BASE_URL } from '../../utils/Api';
 import { useRef } from 'react';
+import changeProfileData from '../../services/async/ChangeProfileData';
+import getUserData from '../../services/async/GetUserData';
+
 import styles from './Profile.module.css'
 function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const startname = useSelector(state => state.userName)
+    const startEmail =useSelector(state => state.userEmail)
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const [name, setName] = React.useState('')
-    const [email, setEmail] = React.useState('')
+    const [name, setName] = React.useState(startname)
+    const [email, setEmail] = React.useState(startEmail)
     const [password, setPassword] = React.useState('******')
     const nameRef = useRef(name)
     const emailRef = useRef(email)
@@ -23,33 +26,11 @@ function Profile() {
     }
     const changeProf = event => {
         event.preventDefault()
-        fetchWithRefresh(`${BASE_URL}/auth/user`, {
-            method: 'PATCH',
-            headers: {
-                authorization: JSON.parse(localStorage.getItem("accessToken")),
-                'Content-Type': 'application/json'
-            }, body: JSON.stringify({
-                name: name,
-                email: email
-            })
-                .then((data) => {
-                    setEmail(data.user.email)
-                    setName(data.user.name)
-                })
-        })
+        dispatch(changeProfileData(name, email))
     }
     React.useEffect(() => {
-        fetchWithRefresh(`${BASE_URL}/auth/user`, {
-            method: 'GET',
-            headers: {
-                authorization: JSON.parse(localStorage.getItem("accessToken"))
-            }
-        }).then((data) => {
-            setEmail(data.user.email)
-            setName(data.user.name)
-        })
-    }
-        , [])
+        dispatch(getUserData())
+    }, [])
     return (
         <>
             <div className={`${styles.Profile} mt-30`} >
