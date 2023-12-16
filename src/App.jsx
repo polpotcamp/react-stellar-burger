@@ -17,7 +17,6 @@ import getUserData from "./services/async/GetUserData";
 import AppHeader from "./components/AppHeader/AppHeader";
 function App() {
   const dispatch = useDispatch()
-  dispatch(getApiData())
   const location = useLocation();
   const navigate = useNavigate();
   const background = location.state && location.state.background;
@@ -28,6 +27,9 @@ function App() {
   if (refreshToken !==null) {
     dispatch(getUserData())
   }
+  React.useEffect(() => {
+    dispatch(getApiData())
+}, [])
   return (
     <div className={styles.app} id="main">
       <AppHeader/>
