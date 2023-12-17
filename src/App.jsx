@@ -20,19 +20,19 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const background = location.state && location.state.background;
+  const refreshToken = localStorage.getItem("refreshToken")
   const handleModalClose = () => {
     navigate(-1);
   };
-  const refreshToken = localStorage.getItem("refreshToken")
-  if (refreshToken !==null) {
-    dispatch(getUserData())
-  }
   React.useEffect(() => {
     dispatch(getApiData())
-}, [])
+    if (refreshToken !== null) {
+      dispatch(getUserData())
+    }
+  }, [])
   return (
     <div className={styles.app} id="main">
-      <AppHeader/>
+      <AppHeader />
       <Routes location={background || location}>
         <Route path='/' element={<HomePage />} />
         <Route path='/ingredients/:ingredientId'

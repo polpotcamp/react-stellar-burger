@@ -64,7 +64,6 @@ function BurgerConstructor() {
         }
         return a
     }
-    console.log(ingr)
     React.useEffect(() => {
         setDomReady(true)
     }, [])
