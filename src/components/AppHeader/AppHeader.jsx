@@ -11,6 +11,10 @@ function AppHeader() {
         const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
         navigate('/profile', { state: initialBreadcrumb });
     };
+    const toFeed = () => {
+        const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
+        navigate('/feed', { state: initialBreadcrumb });
+    };
     return (
         <header className={`${mainStyles.header} `}>
             <div className={` ${mainStyles.container} mt-4 mb-4`}>
@@ -19,7 +23,7 @@ function AppHeader() {
                         <BurgerIcon type="primary" />
                         <p className={`text text_type_main-default ml-2 `}>Конструктор</p>
                     </div>
-                    <div className={`${mainStyles.item} pl-5 pr-5 pb-4 pt-4`}>
+                    <div className={`${mainStyles.item} pl-5 pr-5 pb-4 pt-4`} onClick={toFeed}>
                         <ListIcon type="secondary" />
                         <p className={`text text_type_main-default ml-2 text_color_inactive`}> Лента заказов </p>
                     </div>

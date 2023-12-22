@@ -24,7 +24,7 @@
     justify-content: center;
     overflow: hidden;
     transform: scale(0);
-    z-index: 0;
+    z-index: 10;
 }
 .active{
     transform: scale(1);

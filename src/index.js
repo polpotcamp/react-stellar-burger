@@ -11,7 +11,10 @@ import thunk from "redux-thunk";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router-dom";
-const store = createStore(MainReducer, composeWithDevTools(applyMiddleware(thunk)))
+import { wsActions } from "./services/actions/actions";
+import { socketMiddleware } from "./services/middleware/socketMiddleware";
+import { wsUrl } from "./utils/WS";
+const store = createStore(MainReducer, composeWithDevTools(applyMiddleware(thunk),applyMiddleware(socketMiddleware(wsUrl,wsActions))))
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

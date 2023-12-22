@@ -9,7 +9,7 @@ const ProtectedRouteElement = ({ onlyUnAuth = false, component }) => {
         return <Navigate  to={ from } />;
     }
     if (!isAuthorization && !onlyUnAuth) {
-        return <Navigate to="/login" state={{ from: location}}/>
+        return  <Navigate to="/login" state={{ from: location}}/>
     }
     return component;
 }

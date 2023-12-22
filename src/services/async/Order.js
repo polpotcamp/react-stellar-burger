@@ -14,6 +14,7 @@ export const fetchOrder = (ids) => {
             })
         })
             .then(data => {
+                console.log(data)
                 dispatch(createOrderAction(data))
             })
             .catch(error => {

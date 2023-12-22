@@ -1,0 +1,16 @@
+.TwoColumn{
+    display: flex;
+    justify-content: center;
+}
+.NavText{
+    line-height: 64px;
+}
+.Description{
+    width: 320px;
+}
+.feed{
+    width: 608px;
+    max-height: 852px;
+    overflow: scroll;
+    overflow-x: hidden;
+}

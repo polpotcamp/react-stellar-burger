@@ -9,6 +9,13 @@ export const REGISTER_USER = 'REGISTER_USER'
 export const SIGN_IN_USER = 'SIGN_IN_USER'
 export const LOG_OUT = 'LOG_OUT'
 export const AUTHORIZATION_USER = 'AUTHORIZATION_USER'
+export const WS_CONNECTION_START = 'WS_CONNECTION_START';
+export const WS_CONNECTION_SUCCESS = 'WS_CONNECTION_SUCCESS';
+export const WS_CONNECTION_ERROR = 'WS_CONNECTION_ERROR';
+export const WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED';
+export const WS_GET_MESSAGE = 'WS_GET_MESSAGE';
+export const WS_GET_MESSAGE_USER_ORDERS = 'WS_GET_MESSAGE_BY_USER_ORDERS'
+export const WS_CONNECTION_START_USER_ORDERS = 'WS_CONNECTION_START_USER_ORDERS'
 export const getApiDataAction = (payload) => ({ type: GET_APIDATA, payload })
 export const createOrderAction = (payload) => ({ type: CREATE_ODER, payload })
 export const switchBunAction = (payload) => ({ type: SWITCH_BUN, payload })
@@ -20,3 +27,14 @@ export const registerUserAction = (payload) => ({ type: REGISTER_USER, payload }
 export const signInUserAction = (payload) => ({ type: SIGN_IN_USER, payload })
 export const logOutAction = (payload) => ({ type: LOG_OUT, payload })
 export const authorizationUserAction = (payload) => ({ type:AUTHORIZATION_USER, payload })
+export const wsConnectionStartAction = (payload) => ({ type:WS_CONNECTION_START, payload })
+export const wsConnectionStartUserOrdersAction = (payload) => ({ type:WS_CONNECTION_START_USER_ORDERS, payload })
+export const wsActions = {
+    wsInit: WS_CONNECTION_START,
+    wsInitForUserOrders: WS_CONNECTION_START_USER_ORDERS,
+    onOpen: WS_CONNECTION_SUCCESS,
+    onClose: WS_CONNECTION_CLOSED,
+    onError: WS_CONNECTION_ERROR,
+    onMessage: WS_GET_MESSAGE,
+    onMessageUser: WS_GET_MESSAGE_USER_ORDERS,
+  }

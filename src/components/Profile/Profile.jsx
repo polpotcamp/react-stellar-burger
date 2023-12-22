@@ -24,6 +24,9 @@ function Profile() {
         dispatch(logOut())
         navigate('/', { state: initialBreadcrumb });
     }
+    const toOrders = () => {
+        navigate('/profile/orders', { state: initialBreadcrumb });
+    };
     const changeProf = event => {
         event.preventDefault()
         dispatch(changeProfileData(name, email))
@@ -39,7 +42,7 @@ function Profile() {
                         <p className={`text text_type_main-large ${styles.NavText}`}>
                             Профиль
                         </p>
-                        <p className={`text text_type_main-large text_color_inactive ${styles.NavText}`}>
+                        <p className={`text text_type_main-large text_color_inactive ${styles.NavText}`} onClick={toOrders}>
                             История заказов
                         </p>
                         <p className={`text text_type_main-large text_color_inactive ${styles.NavText}`} onClick={logout}>
