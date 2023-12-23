@@ -1,11 +1,12 @@
 import styles from './OrderFeed.module.css'
 import OrderCard from '../OrderCard/OrderCard'
 import { useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom';
 function OrderFeed() {
+    const location = useLocation();
     const orders = useSelector(state => state.wsOrders)
     const Total = useSelector(state => state.wsTotal)
     const TotalToday = useSelector(state => state.wsTotalToday)
-    console.log(orders)
     return (
         orders ?
             <div className={`${styles.twoColumn} mt-20`}>
@@ -14,9 +15,11 @@ function OrderFeed() {
                         Лента заказов
                     </p>
                     <div className={`${styles.feed} custom-scroll`} >
-                        {orders.map((order) => (
-                            <OrderCard data={order} key={order._id} />
-                        ))}
+                            {orders.map((order) => (
+                                <Link key={order.number} to={`/feed/:${order.number}`} state={{ background: location }} className={`${styles.link}`} >
+                                <OrderCard data={order} key={order._id} />
+                                </Link>
+                            ))}
                     </div>
                 </div>
                 <div className={`${styles.Column}`}>

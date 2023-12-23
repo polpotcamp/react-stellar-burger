@@ -40,6 +40,9 @@ function BurgerConstructor() {
         navigate('/profile', { state: initialBreadcrumb });
     };
     function createOder() {
+        if(!isAuthorization){
+            ToProfile()
+        }
         const ids = []
         for (let i = 0; i < ingr.length; i++) {
             ids.push(ingr[i]._id)
@@ -111,7 +114,7 @@ function BurgerConstructor() {
                         <p className="text text_type_digits-medium mr-2"  >{totalPrice}</p>
                         <CurrencyIcon type="primary" />
                     </div>
-                    <Button htmlType="button" type="primary" size="large" onClick={() => isAuthorization ? createOder(): ToProfile()}>
+                    <Button htmlType="button" type="primary" size="large" onClick={() => createOder()}>
                         Оформить заказ
                     </Button>
                 </div>

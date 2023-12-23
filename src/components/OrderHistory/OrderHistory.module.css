@@ -14,3 +14,7 @@
     overflow: scroll;
     overflow-x: hidden;
 }
+.link{
+    text-decoration: none !important;
+    color: white
+}

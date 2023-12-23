@@ -9,13 +9,14 @@
     overflow-x: hidden;
 }
 .OrdersList{
-    height: 158px;
-    width: 272px;
+    width: 400px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    overflow: hidden;
-    flex-wrap:wrap
+    grid-template-columns: repeat(5,1fr)
 }
 .doneNumbers{
-color: #00CCCC;
+    color: #00CCCC;
 }
+.link{
+        text-decoration: none !important;
+        color: white
+ }

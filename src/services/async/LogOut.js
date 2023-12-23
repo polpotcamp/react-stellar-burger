@@ -14,7 +14,6 @@ export const logOut = () => {
             })
         })
             .then(() => {
-                console.log(token)
                 dispatch(logOutAction())
             })
             .catch(error => {

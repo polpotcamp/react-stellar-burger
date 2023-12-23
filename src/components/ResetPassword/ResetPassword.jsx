@@ -1,5 +1,5 @@
 
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link  } from 'react-router-dom';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import styles from './ResetPassword.module.css'
@@ -17,9 +17,6 @@ function ResetPassword() {
     const tokenRef = useRef(null)
     const flag = localStorage.getItem("flag")
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const toLogin = () => {
-        navigate('/login', { state: initialBreadcrumb });
-    };
     const changePassword = event => {
         event.preventDefault()
         dispatch(resetPassword(password, token))
@@ -79,7 +76,7 @@ function ResetPassword() {
                     <p className="text text_type_main-default text_color_inactive">
                         Вспомнили пароль?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toLogin}>Войти</p>
+                    <Link className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} to={'/login'}>Войти</Link>
                 </div>
             </div>
         </>

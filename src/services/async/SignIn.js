@@ -14,7 +14,6 @@ export const signUp= (email, password) => {
             })
         })
             .then(data => {
-                console.log(data)
                 dispatch(signInUserAction(data))
             })
             .catch(error => {

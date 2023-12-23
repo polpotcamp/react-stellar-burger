@@ -37,7 +37,13 @@ export const socketMiddleware = (wsUrl, wsActions) => {
         socket.onclose = event => {
           dispatch({ type: onClose, payload: event });
         };
-
+        switch (type) {
+          case 'socket/disconnect':
+            socket.close()
+            break
+          default:
+            break
+        }
       }
       if (socket2) {
         socket2.onopen = event => {
@@ -58,6 +64,13 @@ export const socketMiddleware = (wsUrl, wsActions) => {
         socket2.onclose = event => {
           dispatch({ type: onClose, payload: event });
         };
+        switch (type) {
+          case 'socket/disconnect':
+            socket2.close()
+            break
+          default:
+            break
+        }
       }
       next(action);
     };

@@ -7,11 +7,11 @@ import OrderIngredient from "../OrderIngredient/OrderIngredient"
 import { request } from "../../utils/Api"
 import { BASE_URL } from "../../utils/Api"
 function Order() {
-    const id = useParams().number.slice(1)
+    const number = useParams().number.slice(1)
     const ingredients = useSelector(state => state.apiData)
     const orders = useSelector(state => state.wsOrders)
-    let order = orders.find(x => x._id === id)
-    console.log(order)
+    const orderInWsOrders = orders.find(x => x.number === number)
+    const [order,setOrder] = React.useState(orderInWsOrders)
     const totalPrice = calculateTotalPrice()
     function calculateTotalPrice() {
         if (order !== undefined) {
@@ -45,10 +45,10 @@ function Order() {
     }
     const ingredientsInOrder = countIngredients()
     React.useEffect(() => {
-        if (order === undefined) {
-            request(`${BASE_URL}/oredes/${id}`)
+        if (orderInWsOrders === undefined) {
+            request(`${BASE_URL}/orders/${number}`)
                 .then(data => {
-                    order = data
+                    setOrder(data.orders[0])
                 })
                 .catch(error => {
                     console.log(error)

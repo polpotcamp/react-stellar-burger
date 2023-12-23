@@ -10,6 +10,7 @@ import IngredientPage from "./pages/IngredientPage";
 import FeedPage from "./pages/FeedPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
 import OrderPage from "./pages/OrderPage";
+import Order from "./components/Order/Order";
 import React from "react"
 import styles from "./App.module.css";
 import Modal from "./components/Modal/Modal";
@@ -18,7 +19,6 @@ import { useDispatch } from "react-redux";
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import getUserData from "./services/async/GetUserData";
 import AppHeader from "./components/AppHeader/AppHeader";
-import { wsConnectionStartUserOrdersAction, wsConnectionStartAction } from "./services/actions/actions";
 function App() {
   const dispatch = useDispatch()
   const location = useLocation();
@@ -32,8 +32,6 @@ function App() {
     dispatch(getApiData())
     if (refreshToken !== null) {
       dispatch(getUserData())
-      dispatch(wsConnectionStartUserOrdersAction())
-      dispatch(wsConnectionStartAction())
     }
   }, [])
   return (
@@ -47,12 +45,13 @@ function App() {
         <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />} />
       </Routes>
       <Routes location={background || location}>
-        <Route path="profile/orders" element={<OnlyAuth component={<OrderHistoryPage />} />} />
+        <Route path="/profile/orders" element={<OnlyAuth component={<OrderHistoryPage />} />} />
+        <Route path="/profile/orders/:number" element={<OnlyAuth component={<OrderPage />} />}/>
         <Route path='/' element={<HomePage />} />
         <Route path='/ingredients/:ingredientId'
           element={<IngredientPage />} />
         <Route path="/feed" element={<FeedPage />} />
-        <Route path='/feed/:number' element={<OrderPage />} />
+        <Route path='/feed/:number' element={<Order />} />
       </Routes>
       {background && (
         <Routes>
@@ -66,6 +65,14 @@ function App() {
           />
           <Route
             path='/feed/:number'
+            element={
+              <Modal setActive={handleModalClose}>
+                <OrderPage />
+              </Modal>
+            }
+          />
+           <Route
+            path='/profile/orders/:number'
             element={
               <Modal setActive={handleModalClose}>
                 <OrderPage />

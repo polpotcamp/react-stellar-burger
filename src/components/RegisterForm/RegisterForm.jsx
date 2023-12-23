@@ -1,7 +1,7 @@
 import styles from './RegisterForm.module.css'
 import React from 'react';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { registration } from '../../services/async/Registration';
 import { useDispatch } from 'react-redux';
 import { useRef } from 'react';
@@ -17,9 +17,7 @@ function RegisterForm() {
     const [typeIcon, setTypeIcon] = React.useState('HideIcon')
     const [inputPype, setInputType] = React.useState('password')
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const toLogin = () => {
-        navigate('/login', { state: initialBreadcrumb });
-    };
+
     const registr = event => {
         event.preventDefault()
         dispatch(registration(email, password, name))
@@ -87,7 +85,7 @@ function RegisterForm() {
                     <p className="text text_type_main-default text_color_inactive">
                         Уже зарегистрированы?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toLogin}>Войти</p>
+                    < Link className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} to={'/login'}>Войти</ Link>
                 </div>
             </div>
         </>

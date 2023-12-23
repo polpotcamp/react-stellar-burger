@@ -16,18 +16,18 @@ const initialState = {
     wsOrders: [],
     wsTotal: 0,
     wsTotalToday: 0,
-    wsOrdesByUser: []
+    wsOrdesByUser: [],
 }
 export const MainReducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTER_USER:
             localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
             localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
-            return { ...state, isAuthorization: true }
+            return { ...state, isAuthorization: true , userName: action.payload.user.name, userEmail: action.payload.user.email}
         case SIGN_IN_USER:
             localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
             localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
-            return { ...state, isAuthorization: true }
+            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email }
         case AUTHORIZATION_USER:
             return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email }
         case LOG_OUT:

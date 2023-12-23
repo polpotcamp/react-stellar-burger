@@ -2,7 +2,7 @@ import styles from './SignInForm.module.css'
 import React from 'react';
 import { signUp } from '../../services/async/SignIn';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate ,Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { useRef } from 'react';
 function SignInForm() {
@@ -15,12 +15,6 @@ function SignInForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
-    const toRegister = () => {
-        navigate('/register', { state: initialBreadcrumb });
-    };
-    const toforgotPassword = () => {
-        navigate('/forgot-password', { state: initialBreadcrumb });
-    };
     const login = event => {
         event.preventDefault()
         dispatch(signUp(email, password))
@@ -76,13 +70,13 @@ function SignInForm() {
                     <p className="text text_type_main-default text_color_inactive">
                         Вы - новый ползователь?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toRegister}>Зарегистрироваться</p>
+                    <Link className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} to={'/register'} >Зарегистрироваться</Link>
                 </div>
                 <div className={`${styles.Links} mt-4`}>
                     <p className="text text_type_main-default text_color_inactive">
                         Забыли пароль?
                     </p>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} onClick={toforgotPassword}>Восстановить пароль</p>
+                    <Link className={`text text_type_main-default text_color_inactive ${styles.ColoredText}`} to={'/forgot-password'}>Восстановить пароль</Link>
                 </div>
             </div>
         </>
