@@ -29,14 +29,11 @@ export const signInUserAction = (payload) => ({ type: SIGN_IN_USER, payload })
 export const logOutAction = (payload) => ({ type: LOG_OUT, payload })
 export const authorizationUserAction = (payload) => ({ type:AUTHORIZATION_USER, payload })
 export const wsConnectionStartAction = (payload) => ({ type:WS_CONNECTION_START, payload })
-export const wsConnectionStartUserOrdersAction = (payload) => ({ type:WS_CONNECTION_START_USER_ORDERS, payload })
 export const authCheckedAction = (payload) => ({ type:AUTH_CHECKED, payload })
 export const wsActions = {
     wsInit: WS_CONNECTION_START,
-    wsInitForUserOrders: WS_CONNECTION_START_USER_ORDERS,
     onOpen: WS_CONNECTION_SUCCESS,
     onClose: WS_CONNECTION_CLOSED,
     onError: WS_CONNECTION_ERROR,
     onMessage: WS_GET_MESSAGE,
-    onMessageUser: WS_GET_MESSAGE_USER_ORDERS,
   }
