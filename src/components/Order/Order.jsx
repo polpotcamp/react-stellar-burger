@@ -11,7 +11,7 @@ function Order() {
     const ingredients = useSelector(state => state.apiData)
     const orders = useSelector(state => state.wsOrders)
     const orderInWsOrders = orders.find(x => x.number === number)
-    const [order,setOrder] = React.useState(orderInWsOrders)
+    const [order, setOrder] = React.useState(orderInWsOrders)
     const totalPrice = calculateTotalPrice()
     function calculateTotalPrice() {
         if (order !== undefined) {
@@ -24,6 +24,13 @@ function Order() {
             return price
         }
     }
+    function createdDate() {
+        if (order !== undefined) {
+            const date = order.createdAt.replace('T', ' ')
+            const createdAt = date.substring(0, 19)
+            return createdAt
+        }
+    }
     function countIngredients() {
         if (order !== undefined) {
             let ingredientsInOrder = []
@@ -33,7 +40,6 @@ function Order() {
                 const ingr = ingredients.find(x => x._id === uniqueIngredientsArr[i])
                 const IngrForArr = { ingredient: ingr, count: 0 }
                 for (let i = 0; i < order.ingredients.length; i++) {
-                    console.log(order.ingredients)
                     if (IngrForArr.ingredient._id === order.ingredients[i]) {
                         IngrForArr.count++
                     }
@@ -44,6 +50,7 @@ function Order() {
         }
     }
     const ingredientsInOrder = countIngredients()
+    const createdAt = createdDate()
     React.useEffect(() => {
         if (orderInWsOrders === undefined) {
             request(`${BASE_URL}/orders/${number}`)
@@ -77,7 +84,7 @@ function Order() {
                 </div>
                 <div className={`${styles.line}`}>
                     <p className="text text_type_main-default text_color_inactive">
-                        {order.createdAt}
+                        {createdAt}
                     </p>
                     <div className={`${styles.price}`}>
                         <p className="text text_type_digits-medium mr-2">

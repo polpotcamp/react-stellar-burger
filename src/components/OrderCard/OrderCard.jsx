@@ -1,9 +1,7 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './OrderCard.module.css'
 import { useSelector } from 'react-redux';
-import {  useLocation } from "react-router-dom";
 function OrderCard({ data}) {
-    const location = useLocation();
     const ingredientsInOrderIds = data.ingredients
     const ingredients = useSelector(state => state.apiData)
     const ingredientsInOrder = ingredientsInOrderIds.map((ingredientId)=>(ingredients.find(x => x._id === ingredientId))) 

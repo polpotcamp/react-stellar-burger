@@ -1,0 +1,16 @@
+.NavText{
+    line-height: 64px;
+    text-decoration: none;
+}
+.NavTextActive{
+    color: white;
+    line-height: 64px;
+    text-decoration: none;
+}
+.Description{
+    width: 320px;
+}
+.Column{
+    display: flex;
+    flex-direction: column;
+}

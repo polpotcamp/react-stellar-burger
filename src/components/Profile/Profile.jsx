@@ -7,6 +7,7 @@ import { logOut } from '../../services/async/LogOut';
 import { useRef } from 'react';
 import changeProfileData from '../../services/async/ChangeProfileData';
 import styles from './Profile.module.css'
+import ProfileNavigation from '../ProfileNavigation/ProfileNavigation';
 function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -26,30 +27,15 @@ function Profile() {
         event.preventDefault()
         dispatch(changeProfileData(name, email))
     }
-    const startValues = () =>{
+    const startValues = () => {
         setName(startName)
         setEmail(startEmail)
     }
     return (
         <>
-            <div className={`${styles.Profile} mt-30`} >
-                <div className={`${styles.Column}`}>
-                    <nav className={`${styles.Column} mr-15`}>
-                        <p className={`text text_type_main-large ${styles.NavText}`}>
-                            Профиль
-                        </p>
-                        <Link className={`text text_type_main-large text_color_inactive ${styles.NavText}`} to={'/profile/orders'}>
-                            История заказов
-                        </Link>
-                        <p className={`text text_type_main-large text_color_inactive ${styles.NavText}`} onClick={logout}>
-                            Выход
-                        </p>
-                    </nav>
-                    <p className={`text text_type_main-default text_color_inactive mt-20 ${styles.Description}`}>
-                        В этом разделе вы можете изменить свои персональные данные
-                    </p>
-                </div>
-                <form className={`${styles.Column}`} onSubmit={changeProf}>
+            <div className={`${styles.Profile}`} >
+                <ProfileNavigation />
+                <form className={`${styles.Column} mt-30`} onSubmit={changeProf}>
                     <Input
                         type={'text'}
                         placeholder={'Имя'}
@@ -88,15 +74,15 @@ function Profile() {
                         size={'default'}
                         extraClass="mt-6 mb-6"
                     />
-                   {(name!==startName || email!==startEmail)?
-                   <div className={`${styles.buttons}`}>
-                    <p className={`text text_type_main-default text_color_inactive ${styles.text} mr-10`} onClick={startValues}>Отмена</p>
-                    <Button htmlType="submit" type="primary" size="large" >
-                        Сохранить
-                    </Button>
-                    </div>
-                    :null
-}
+                    {(name !== startName || email !== startEmail) ?
+                        <div className={`${styles.buttons}`}>
+                            <p className={`text text_type_main-default text_color_inactive ${styles.text} mr-10`} onClick={startValues}>Отмена</p>
+                            <Button htmlType="submit" type="primary" size="large" >
+                                Сохранить
+                            </Button>
+                        </div>
+                        : null
+                    }
                 </form>
             </div>
         </>

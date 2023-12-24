@@ -1,6 +1,6 @@
 import {
     GET_APIDATA, CREATE_ODER, SWITCH_BUN, ADD_INGREDIENT, SWITCH_INGREDIENT_DETAILS, REMOVE_INGREDIENT, SORTED_INGREDIENTS, REGISTER_USER,
-    SIGN_IN_USER, LOG_OUT, AUTHORIZATION_USER, WS_CONNECTION_CLOSED, WS_CONNECTION_SUCCESS, WS_CONNECTION_ERROR, WS_GET_MESSAGE, WS_GET_MESSAGE_USER_ORDERS, WS_CONNECTION_START_USER_ORDERS
+    SIGN_IN_USER, LOG_OUT, AUTHORIZATION_USER, WS_CONNECTION_CLOSED, WS_CONNECTION_SUCCESS, WS_CONNECTION_ERROR, WS_GET_MESSAGE,  WS_CONNECTION_START_USER_ORDERS, AUTH_CHECKED
 } from "../actions/actions";
 
 const initialState = {
@@ -10,31 +10,31 @@ const initialState = {
     ingr: [],
     inigredientDetails: [],
     isAuthorization: false,
+    isAuthChecked: false,
     userName: '',
     userEmail: '',
     wsConnected: false,
     wsOrders: [],
     wsTotal: 0,
     wsTotalToday: 0,
-    wsOrdesByUser: [],
 }
 export const MainReducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTER_USER:
             localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
             localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
-            return { ...state, isAuthorization: true , userName: action.payload.user.name, userEmail: action.payload.user.email}
+            return { ...state, isAuthorization: true , userName: action.payload.user.name, userEmail: action.payload.user.email,isAuthChecked:true}
         case SIGN_IN_USER:
             localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
             localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
-            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email }
+            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email, isAuthChecked:true }
         case AUTHORIZATION_USER:
-            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email }
+            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email, isAuthChecked:true}
         case LOG_OUT:
             localStorage.clear()
             return { ...state, isAuthorization: false }
         case GET_APIDATA:
-            return { ...state, apiData: action.payload.data }
+            return { ...state, apiData: action.payload.data, isAuthChecked:true }
         case CREATE_ODER:
             return { ...state, order: action.payload.order.number }
         case SWITCH_BUN:
@@ -75,10 +75,10 @@ export const MainReducer = (state = initialState, action) => {
                 ...state,
                 wsConnected: true
             };
-        case WS_GET_MESSAGE_USER_ORDERS:
-            return {
-                ...state, wsOrdesByUser: action.payload.orders
-            }
+        case AUTH_CHECKED:
+            return{
+                ...state, isAuthChecked:true
+            }    
         default: {
             return state
         }

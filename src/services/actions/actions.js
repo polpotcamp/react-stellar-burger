@@ -16,6 +16,7 @@ export const WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED';
 export const WS_GET_MESSAGE = 'WS_GET_MESSAGE';
 export const WS_GET_MESSAGE_USER_ORDERS = 'WS_GET_MESSAGE_BY_USER_ORDERS'
 export const WS_CONNECTION_START_USER_ORDERS = 'WS_CONNECTION_START_USER_ORDERS'
+export const AUTH_CHECKED = 'AUTH_CHECKED'
 export const getApiDataAction = (payload) => ({ type: GET_APIDATA, payload })
 export const createOrderAction = (payload) => ({ type: CREATE_ODER, payload })
 export const switchBunAction = (payload) => ({ type: SWITCH_BUN, payload })
@@ -29,6 +30,7 @@ export const logOutAction = (payload) => ({ type: LOG_OUT, payload })
 export const authorizationUserAction = (payload) => ({ type:AUTHORIZATION_USER, payload })
 export const wsConnectionStartAction = (payload) => ({ type:WS_CONNECTION_START, payload })
 export const wsConnectionStartUserOrdersAction = (payload) => ({ type:WS_CONNECTION_START_USER_ORDERS, payload })
+export const authCheckedAction = (payload) => ({ type:AUTH_CHECKED, payload })
 export const wsActions = {
     wsInit: WS_CONNECTION_START,
     wsInitForUserOrders: WS_CONNECTION_START_USER_ORDERS,

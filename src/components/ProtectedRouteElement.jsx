@@ -3,9 +3,13 @@ import { useSelector } from 'react-redux';
 
 const ProtectedRouteElement = ({ onlyUnAuth = false, component }) => {
     const isAuthorization = useSelector(state => state.isAuthorization)
+    const isAuthChecked= useSelector((state) => state.isAuthChecked);
     const location = useLocation();
     const from = location.state?.from || '/';
-    if (isAuthorization && onlyUnAuth) {
+    if(!isAuthChecked){
+        return null
+    }
+    if (isAuthorization&& onlyUnAuth) {
         return <Navigate  to={ from } />;
     }
     if (!isAuthorization && !onlyUnAuth) {
