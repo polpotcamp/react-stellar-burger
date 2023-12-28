@@ -6,12 +6,15 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrder } from '../../services/async/Order';
 import { useDrop } from 'react-dnd';
+import { useNavigate } from 'react-router-dom'
 import { switchBunAction, addIngredientAction } from '../../services/actions/actions';
 import ConstructorElementList from '../ConstructorElementList/ConstructorElementList';
 function BurgerConstructor() {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const [domReady, setDomReady] = React.useState(false)
     const [modalActive, setModalActive] = React.useState(false)
+    const isAuthorization = useSelector(state => state.isAuthorization)
     const ingr = useSelector(state => state.ingr)
     const bun = useSelector(state => state.bun)
     const totalPrice = calculateTotalPrice()
@@ -32,7 +35,14 @@ function BurgerConstructor() {
             }
         }
     })
+    const ToProfile = () => {
+        const initialBreadcrumb = [{ path: '/', url: '/', title: 'Home' }];
+        navigate('/profile', { state: initialBreadcrumb });
+    };
     function createOder() {
+        if(!isAuthorization){
+            ToProfile()
+        }
         const ids = []
         for (let i = 0; i < ingr.length; i++) {
             ids.push(ingr[i]._id)
@@ -57,7 +67,6 @@ function BurgerConstructor() {
         }
         return a
     }
-    console.log(ingr)
     React.useEffect(() => {
         setDomReady(true)
     }, [])

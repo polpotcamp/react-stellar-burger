@@ -1,0 +1,22 @@
+.twoColumn{
+    display: flex;
+    justify-content: center;
+}
+.feed{
+    width: 608px;
+    max-height: 852px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.OrdersList{
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr)
+}
+.doneNumbers{
+    color: #00CCCC;
+}
+.link{
+        text-decoration: none !important;
+        color: white
+ }

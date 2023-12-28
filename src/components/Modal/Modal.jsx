@@ -5,31 +5,30 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import ModalOverlay from '../ModalOverlay/ModalOverlay';
 function Modal({ setActive, children }) {
-    const container = document.querySelector('#main')
+    const container = document.querySelector('#modals')
     const [domReady, setDomReady] = React.useState(false)
-    function closeModal(){
+    function closeModal() {
         setActive(false)
     }
-    const closeByEsc = evt => {
-        if (evt.key === `Escape`) {
-            closeModal()
-        }
-    }
     React.useEffect(() => {
+        const closeByEsc = evt => {
+            if (evt.key === `Escape`) {
+                closeModal()
+            }
+        }
         setDomReady(true)
         window.addEventListener('keydown', closeByEsc)
         return () => {
             window.removeEventListener('keydown', closeByEsc)
-
         }
     }, [])
     return domReady
         ? ReactDOM.createPortal((
-            <div className={`${ModalStyles.modal} ${ModalStyles.active}` }>
-                 <ModalOverlay  onClick={closeModal}/>
+            <div className={`${ModalStyles.modal} ${ModalStyles.active}`}>
+                <ModalOverlay onClick={closeModal} />
                 <div className={ModalStyles.content} onClick={e => e.stopPropagation()}>
                     <div className={ModalStyles.close}>
-                        <CloseIcon onClick={() => closeModal()} />
+                        <CloseIcon onClick={closeModal} />
                     </div>
                     {children}
                 </div>

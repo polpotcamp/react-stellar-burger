@@ -1,0 +1,24 @@
+.Profile{
+    display: flex;
+    margin-left: 380px;
+}
+.Column{
+    display: flex;
+    flex-direction: column;
+}
+.NavText{
+    line-height: 64px;
+    text-decoration: none;
+}
+.Description{
+    width: 320px;
+}
+.text{
+    color: #4C4CFF;
+    cursor: pointer;
+}
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

@@ -1,0 +1,29 @@
+.card{
+    display: flex;
+    width: 640px;
+    align-items: center;
+}
+.imgContainer{
+    background: 
+    linear-gradient(#000 0 0) padding-box, 
+    linear-gradient(to right, #801AB2, #4C4CFF) border-box;
+    color: #313149;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    margin: 0px 0;
+    width: 64px;
+    height: 64px;
+    z-index: 10;
+}
+.img{
+    object-fit: cover;
+    width: 64px;
+    height: 64px;
+}
+.price{
+    display: flex;
+    align-items: center;
+}
+.name{
+    width: 414px;
+}

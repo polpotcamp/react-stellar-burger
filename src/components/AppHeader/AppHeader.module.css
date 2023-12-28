@@ -15,8 +15,14 @@
 .item{
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 .personalAccount{
     display: flex;
     margin-left: 289px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.active{
+    color: white;
 }

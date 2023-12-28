@@ -1,4 +1,7 @@
-import { GET_APIDATA, CREATE_ODER, SWITCH_BUN, ADD_INGREDIENT, SWITCH_INGREDIENT_DETAILS, REMOVE_INGREDIENT, SORTED_INGREDIENTS } from "../actions/actions";
+import {
+    GET_APIDATA, CREATE_ODER, SWITCH_BUN, ADD_INGREDIENT, SWITCH_INGREDIENT_DETAILS, REMOVE_INGREDIENT, SORTED_INGREDIENTS, REGISTER_USER,
+    SIGN_IN_USER, LOG_OUT, AUTHORIZATION_USER, WS_CONNECTION_CLOSED, WS_CONNECTION_SUCCESS, WS_CONNECTION_ERROR, WS_GET_MESSAGE,  WS_CONNECTION_START_USER_ORDERS, AUTH_CHECKED
+} from "../actions/actions";
 
 const initialState = {
     apiData: [],
@@ -6,11 +9,32 @@ const initialState = {
     bun: [],
     ingr: [],
     inigredientDetails: [],
-};
+    isAuthorization: false,
+    isAuthChecked: false,
+    userName: '',
+    userEmail: '',
+    wsConnected: false,
+    wsOrders: [],
+    wsTotal: 0,
+    wsTotalToday: 0,
+}
 export const MainReducer = (state = initialState, action) => {
     switch (action.type) {
+        case REGISTER_USER:
+            localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
+            localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
+            return { ...state, isAuthorization: true , userName: action.payload.user.name, userEmail: action.payload.user.email,isAuthChecked:true}
+        case SIGN_IN_USER:
+            localStorage.setItem("refreshToken", JSON.stringify(action.payload.refreshToken))
+            localStorage.setItem("accessToken", JSON.stringify(action.payload.accessToken))
+            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email, isAuthChecked:true }
+        case AUTHORIZATION_USER:
+            return { ...state, isAuthorization: true, userName: action.payload.user.name, userEmail: action.payload.user.email, isAuthChecked:true}
+        case LOG_OUT:
+            localStorage.clear()
+            return { ...state, isAuthorization: false }
         case GET_APIDATA:
-            return { ...state, apiData: action.payload.data }
+            return { ...state, apiData: action.payload.data, isAuthChecked:true }
         case CREATE_ODER:
             return { ...state, order: action.payload.order.number }
         case SWITCH_BUN:
@@ -26,11 +50,38 @@ export const MainReducer = (state = initialState, action) => {
             const newArr = [...state.ingr]
             newArr.splice(action.payload.dragIndex, 1)
             newArr.splice(action.payload.hoverIndex, 0, dragCard)
-            console.log( action.payload.hoverIndex)
             return { ...state, ingr: newArr }
+        case WS_CONNECTION_SUCCESS:
+            return {
+                ...state,
+                wsConnected: true
+            };
+        case WS_CONNECTION_ERROR:
+            return {
+                ...state,
+                wsConnected: false
+            };
+        case WS_CONNECTION_CLOSED:
+            return {
+                ...state,
+                wsConnected: false
+            };
+        case WS_GET_MESSAGE:
+            return {
+                ...state, wsOrders: action.payload.orders, wsTotal: action.payload.total, wsTotalToday: action.payload.totalToday
+            }
+        case WS_CONNECTION_START_USER_ORDERS:
+            return {
+                ...state,
+                wsConnected: true
+            };
+        case AUTH_CHECKED:
+            return{
+                ...state, isAuthChecked:true
+            }    
         default: {
             return state
         }
     }
 }
-// state.ingr.filter(ingredient =>  ingredient._id !== action.payload)
+

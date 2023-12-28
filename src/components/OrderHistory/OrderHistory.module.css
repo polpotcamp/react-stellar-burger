@@ -1,0 +1,14 @@
+.TwoColumn{
+    display: flex;
+    justify-content: center;
+}
+.feed{
+    width: 608px;
+    max-height: 852px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.link{
+    text-decoration: none !important;
+    color: white
+}

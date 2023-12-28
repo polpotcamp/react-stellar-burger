@@ -2,7 +2,6 @@ import Mainstyles from './BurgerIngredients.module.css'
 import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientList from '../IngredientList/IngredientList';
-
 function BurgerIngredients() {
     const [current, setCurrent] = React.useState('one')
     const topRef = React.useRef(null)

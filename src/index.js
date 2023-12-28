@@ -1,22 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/App/App";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore , applyMiddleware} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { MainReducer } from "./services/reduces/MainReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-const store = createStore(MainReducer,composeWithDevTools(applyMiddleware(thunk)))
+import { BrowserRouter } from "react-router-dom";
+import { wsActions } from "./services/actions/actions";
+import { socketMiddleware } from "./services/middleware/socketMiddleware";
+const store = createStore(MainReducer, composeWithDevTools(applyMiddleware(thunk),applyMiddleware(socketMiddleware(wsActions))))
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <DndProvider backend={HTML5Backend}>
-    <App/>
-    </DndProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </DndProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

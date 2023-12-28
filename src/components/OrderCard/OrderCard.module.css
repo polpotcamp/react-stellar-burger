@@ -1,0 +1,75 @@
+
+.card{
+    width: 584px;
+    background-color: #1C1C21;
+    border-radius: 50px;
+}
+.ingredientsLine{  
+    height: 64px;
+    position: relative;
+}
+.line{
+    width: 536px;
+    display: flex;
+    justify-content: space-between;
+}
+  .imgContainer{
+    background: 
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(to right, #801AB2, #4C4CFF) border-box;
+    color: #313149;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    margin: 0px 0;
+    width: 64px;
+    height: 64px;
+    z-index: 6;
+  }
+.imgContainer2{
+    z-index: 5;
+    left: 48px;
+}
+.imgContainer3{
+    z-index:4;
+    left: 96px;
+}
+.imgContainer4{
+    z-index: 3;
+    left: 144px;
+}
+.imgContainer5{
+    z-index: 2;
+    left: 192px;
+}.imgContainer6{
+    z-index: 1;
+    position: absolute;
+    left: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgText{
+    z-index: 4;
+    position: absolute;
+    color: white;
+}
+.img{
+    object-fit: cover;
+    width: 64px;
+    height: 64px;
+}
+.img6{
+    border-radius: 50%; 
+    width: 64px;
+    height: 64px;
+    filter: brightness(60%)
+}
+.price{
+    display: flex;
+    align-items: center;
+}
+.link{
+    text-decoration: none !important;
+    color: white
+}
