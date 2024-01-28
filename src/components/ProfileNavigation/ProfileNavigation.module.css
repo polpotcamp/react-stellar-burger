@@ -1,6 +1,7 @@
 .NavText{
     line-height: 64px;
     text-decoration: none;
+    cursor: pointer;
 }
 .NavTextActive{
     color: white;
