@@ -58,8 +58,8 @@ export type TInitialState ={
     ingr: Array<any>;
     isAuthorization: Boolean;
     isAuthChecked: Boolean;
-    userName: String;
-    userEmail:String;
+    userName: string;
+    userEmail:string;
     wsConnected: Boolean;
     wsOrders:Array<TOrder>;
     wsTotal: number;

@@ -1,6 +1,6 @@
 
 import OrderHistory from "../components/OrderHistory/OrderHistory"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "../hooks/hooks"
 import { getWsConnectionStartAction } from "../services/actions/WS"
 import { wsUrl } from "../utils/WS"
 import React from "react"

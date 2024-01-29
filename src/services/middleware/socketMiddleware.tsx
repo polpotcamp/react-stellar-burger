@@ -10,7 +10,8 @@ interface IsocketMiddlewareProps {
 export const socketMiddleware = (wsActions: IsocketMiddlewareProps) => {
   return (store: any) => {
     let socket: any = null;
-    return (next: any) => (action: any) => {
+    return (next: any) => (action: {type:string,payload:any}) => {
+      console.log(action)
       const { dispatch } = store;
       const { type, payload } = action;
       const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;
@@ -30,9 +31,10 @@ export const socketMiddleware = (wsActions: IsocketMiddlewareProps) => {
           const { data } = event;
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
-          dispatch({ type: onMessage, wsOrders: restParsedData });
+          dispatch({ type: onMessage, payload: restParsedData });
         };
         socket.onclose = (event: any) => {
+          
           dispatch({ type: onClose, payload: event });
         };
         switch (type) {

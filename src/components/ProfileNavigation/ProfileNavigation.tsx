@@ -1,6 +1,6 @@
 import styles from './ProfileNavigation.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch } from '../../hooks/hooks'
 import { logOut } from '../../services/async/LogOut'
 import { FC } from 'react';
 interface ISetActiveProps {

@@ -1,5 +1,5 @@
 import { useDrag, useDrop } from 'react-dnd';
-import React, { FC } from 'react';
+import React from 'react';
 import { DragIcon, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorStyles from '../BurgerConstructor/BurgerConstructor.module.css'
 import { useDispatch } from '../../hooks/hooks';

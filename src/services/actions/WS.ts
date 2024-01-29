@@ -15,7 +15,7 @@ export interface IGetWsConnectionClosedAction {
 }
 export interface IGetWsGetMessageAction {
     readonly type: typeof WS_GET_MESSAGE;
-    wsOrders: TOrders
+    payload: TOrders
 }
 export type TWsActions =
     | IGetWsConnectionSuccessAction
@@ -35,7 +35,7 @@ export const getWsConnectionErrorAction = (): IGetWsConnectionErrorAction => ({
 export const getWsConnectionClosedAction = (): IGetWsConnectionClosedAction => ({
     type: WS_CONNECTION_CLOSED,
 })
-export const getWsGetMessageAction = (wsOrders: TOrders): IGetWsGetMessageAction => ({
+export const getWsGetMessageAction = (payload: TOrders): IGetWsGetMessageAction => ({
     type: WS_GET_MESSAGE,
-    wsOrders
+    payload
 })

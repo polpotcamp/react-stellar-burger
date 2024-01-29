@@ -13,13 +13,13 @@ import { TIngredient } from '../../utils/types';
 const BurgerConstructor: FC = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
-    const [domReady, setDomReady] = React.useState(false)
-    const [modalActive, setModalActive] = React.useState(false)
+    const [domReady, setDomReady] = React.useState<boolean>(false)
+    const [modalActive, setModalActive] = React.useState<boolean>(false)
     const isAuthorization = useSelector(state => state.isAuthorization)
     const ingr = useSelector(state => state.ingr)
     const bun = useSelector(state => state.bun)
-    const totalPrice = calculateTotalPrice()
-    const [codeName, setCodeName] = React.useState(0)
+    const totalPrice:number = calculateTotalPrice()
+    const [codeName, setCodeName] = React.useState<number>(0)
     const [, dropTarget] = useDrop({
         accept: ["ingredient"],
         drop(item: {
@@ -27,7 +27,7 @@ const BurgerConstructor: FC = () => {
         }) {
             console.log(item)
             if (item.ingredient !== undefined) {
-                const ingredient = item.ingredient
+                const ingredient:TIngredient = item.ingredient
                 if (ingredient.type === 'bun') {
                     dispatch(getSwitchBunAction(ingredient))
                 } else if (ingredient.type !== 'bun') {
@@ -59,7 +59,7 @@ const BurgerConstructor: FC = () => {
         setModalActive(true)
     }
     function calculateTotalPrice() {
-        let a = 0
+        let a:number = 0
         if (bun !== undefined) {
             a = bun.price
             a *= 2

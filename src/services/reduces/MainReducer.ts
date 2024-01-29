@@ -70,7 +70,7 @@ export const MainReducer = (state = initialState, action:MainAction) :TInitialSt
             };
         case WS_GET_MESSAGE:
             return {
-                ...state, wsOrders: action.wsOrders.orders, wsTotal: action.wsOrders.total, wsTotalToday: action.wsOrders.totalToday
+                ...state, wsOrders: action.payload.orders, wsTotal: action.payload.total, wsTotalToday: action.payload.totalToday
             }
         case AUTH_CHECKED:
             return {

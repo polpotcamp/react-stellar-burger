@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from '../hooks/hooks';
 type ProtectedRouteElementProps ={
-    component: any
+    component:any
     onlyUnAuth?: boolean
 }
 const ProtectedRouteElement = ({ onlyUnAuth = false, component} :ProtectedRouteElementProps) => {

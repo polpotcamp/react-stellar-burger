@@ -1,6 +1,6 @@
 import OrderFeed from "../components/OrderFeed/OrderFeed"
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "../hooks/hooks"
 import { getWsConnectionStartAction } from "../services/actions/WS"
 import { wsUrl } from "../utils/WS"
 function FeedPage() {
