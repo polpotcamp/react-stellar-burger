@@ -25,7 +25,6 @@ const BurgerConstructor: FC = () => {
         drop(item: {
             ingredient: TIngredient
         }) {
-            console.log(item)
             if (item.ingredient !== undefined) {
                 const ingredient:TIngredient = item.ingredient
                 if (ingredient.type === 'bun') {

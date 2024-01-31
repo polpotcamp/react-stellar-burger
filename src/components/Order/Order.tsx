@@ -68,8 +68,9 @@ const Order: FC = () => {
     const createdAt: string | undefined = createdDate()
     React.useEffect(() => {
         if (orderInWsOrders === undefined) {
-            request(`${BASE_URL}/orders/${number}`)
+            request<{succes:boolean, orders:Array<TOrder>}>(`${BASE_URL}/orders/${number}`)
                 .then(data => {
+                   if(data)
                     setOrder(data.orders[0])
                 })
                 .catch(error => {

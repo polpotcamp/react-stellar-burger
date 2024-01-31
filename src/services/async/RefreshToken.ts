@@ -1,8 +1,9 @@
 
 import { BASE_URL } from "../../utils/Api";
-import {checkReponse} from "../../utils/Api";
-export const refreshToken = () => {
-  return fetch(`${BASE_URL}/auth/token`, {
+import { request } from "../../utils/Api";
+import { TUser } from "../../utils/types";
+export const refreshToken  = async ():Promise<TUser|null> => {
+  return request(`${BASE_URL}/auth/token`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -10,5 +11,5 @@ export const refreshToken = () => {
     body: JSON.stringify({
       token: localStorage.getItem("refreshToken"),
     }),
-  }).then(checkReponse)
+  })
 };

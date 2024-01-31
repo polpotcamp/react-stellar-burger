@@ -3,6 +3,8 @@ import { Action, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { store } from '..';
 import { TIngredientActions } from '../services/actions/Ingredients';
+import { TUserActions } from '../services/actions/User';
+import { TWsActions } from '../services/actions/WS';
 export const ingredientType = PropTypes.shape({
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -53,7 +55,7 @@ export type TOrder ={
 }
 export type TInitialState ={
     apiData: ReadonlyArray< TIngredient>;
-    order: String;
+    order: number;
     bun?: TIngredient;
     ingr: Array<any>;
     isAuthorization: Boolean;
@@ -65,7 +67,7 @@ export type TInitialState ={
     wsTotal: number;
     wsTotalToday: number;
 }
-type TApplicationActions = TIngredientActions
+type TApplicationActions = TIngredientActions| TUserActions|TWsActions
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ActionCreator<

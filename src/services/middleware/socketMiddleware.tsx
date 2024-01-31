@@ -11,7 +11,6 @@ export const socketMiddleware = (wsActions: IsocketMiddlewareProps) => {
   return (store: any) => {
     let socket: any = null;
     return (next: any) => (action: {type:string,payload:any}) => {
-      console.log(action)
       const { dispatch } = store;
       const { type, payload } = action;
       const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;

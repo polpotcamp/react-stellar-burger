@@ -2,7 +2,7 @@
 import { request } from "../../utils/Api"
 import { BASE_URL } from "../../utils/Api"
 
-function resetPassword(password:string,token:string){
+function resetPassword(password:string,token:string):()=>void{
     return function (){
         request(`${BASE_URL}/password-reset/reset`, {
             method: 'POST',

@@ -8,7 +8,7 @@ import { TUserActions } from "../actions/User";
 import { TWsActions } from "../actions/WS";
 const initialState: TInitialState = {
     apiData: [],
-    order: '',
+    order: 0,
     bun: undefined,
     ingr: [],
     isAuthorization: false,

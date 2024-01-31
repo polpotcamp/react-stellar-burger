@@ -11,6 +11,7 @@ export const getUserData: AppThunk = () => {
         authorization: JSON.parse(localStorage.getItem("accessToken")as string)
       }
     }).then((data) => {
+      if(data)
       dispatch(getAuthorizationUserAction(data))
     }).catch(error => {
       console.log(error)

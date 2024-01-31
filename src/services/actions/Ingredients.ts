@@ -6,7 +6,7 @@ export interface IGetApiDataAction {
 }
 export interface IGetCreatedOrderAction {
   readonly type: typeof CREATE_ODER;
-  order: string
+  order: number
 }
 export interface IGetSwitchBunAction {
   readonly type: typeof SWITCH_BUN;
@@ -38,7 +38,7 @@ export const getApiDataAction = (apiData: ReadonlyArray<TIngredient>): IGetApiDa
   type: APIDATA_REQUEST,
   apiData
 })
-export const getCreateOrderAction = (order: string): IGetCreatedOrderAction => ({
+export const getCreateOrderAction = (order: number): IGetCreatedOrderAction => ({
   type: CREATE_ODER,
   order
 })

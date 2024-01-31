@@ -1,11 +1,12 @@
 
-export function checkReponse(res:any){
+export async function checkReponse<T>(res:Response):Promise<T|null>{
     if (res.ok) {
-        return res.json();
+        if(res!==null)
+        return await res.json();
     }
     return Promise.reject(`Ошибка ${res.status}`);
 }
-export  function request(url:string,options?:any){
-    return fetch(url, options).then(checkReponse)
+export function request<T>(url: string, options?: RequestInit) {
+    return fetch(url, options).then(checkReponse<T>)
 }
-export const BASE_URL ='https://norma.nomoreparties.space/api'
+export const BASE_URL = 'https://norma.nomoreparties.space/api'
