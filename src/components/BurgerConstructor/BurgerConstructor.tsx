@@ -92,7 +92,8 @@ const BurgerConstructor: FC = () => {
                         </div> :
                         <div className={`${BurgerConstructorStyles.ChoiseBunTop}`}>
                             <p className="text text_type_main-medium">выберите булки</p>
-                        </div>}
+                        </div>
+                        }
                 <div className={`${BurgerConstructorStyles.elements} custom-scroll `} >
                     {
                         (ingr !== undefined) ?

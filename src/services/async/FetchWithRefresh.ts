@@ -6,7 +6,7 @@ export const fetchWithRefresh = async (url: string, options: RequestInit) => {
     const res = await fetch(url, options);
     return await checkReponse(res) as TUser;
   } catch (err: any) {
-    if (err.message === "jwt expired") {
+    if (err=== "Ошибка 403") {
       const refreshData = await refreshToken(); //обновляем токен
       if (refreshData) {
         if (!refreshData.success) {

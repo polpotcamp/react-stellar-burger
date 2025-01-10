@@ -8,6 +8,7 @@ interface IngredientListProps {
   }
 const IngredientList: FC<IngredientListProps> = ({ type }) => {
     const apiData = useSelector(state => state.apiData)
+    console.log(apiData)
     let ingedientList:Array<TIngredient> = isTrueType()
     function isTrueType() {
         let a:Array<TIngredient> = []
